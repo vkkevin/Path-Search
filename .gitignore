@@ -5,4 +5,5 @@ moc_*.h
 core
 *.core
 path_search
-Makefile
+*.pro
+*.pro.*
