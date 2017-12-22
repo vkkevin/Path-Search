@@ -37,7 +37,8 @@ CentralWidget::CentralWidget(QWidget *parent): QWidget(parent)
 
 CentralWidget::~CentralWidget()
 {
-
+    // Finder 无父组件， 析够时需释放资源
+    delete MFinder;
 }
 
 void CentralWidget::setupUi()
