@@ -51,7 +51,7 @@ Finder::Finder(QObject *parent): QObject(parent)
 
 Finder::~Finder()
 {
-
+    delete MFinderThread;
 }
 
 /*  此处有 bug
@@ -214,7 +214,8 @@ FinderThread::FinderThread(Finder *finder, QObject *parent): QThread(parent)
 
 FinderThread::~FinderThread()
 {
-
+    terminate();
+    wait();
 }
 
 void FinderThread::run()

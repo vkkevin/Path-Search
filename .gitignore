@@ -2,8 +2,8 @@
 moc_*.cpp
 moc_*.h
 *~
-core
 *.core
-path_search
+Path-Search
+*.pro.user
 *.pro
-*.pro.*
+
