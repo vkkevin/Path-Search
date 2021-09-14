@@ -14,7 +14,7 @@ public:
     std::vector<Node *> iDAStarSearch();
 
     std::vector<Node *> MPath;
-    const static double  Infinity = 0x0ffffff;
+    constexpr const static double  Infinity = 0x0ffffff;
     double MStopTime;
 
 };

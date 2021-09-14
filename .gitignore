@@ -5,5 +5,5 @@ moc_*.h
 *.core
 Path-Search
 *.pro.user
-*.pro
-
+dev.bat
+dev.sh
