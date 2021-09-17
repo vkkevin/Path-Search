@@ -17,11 +17,12 @@ public:
     Graph *graph();
 
 protected:
-    void setupUi();
-    void setupConnect();
+    void init();
+    void initUi();
+    void initConnect();
 
 private:
-    GraphWidget *MGraph;
+    GraphWidget *_graph;
 
 signals:
     void graphChanged(Graph *graph);

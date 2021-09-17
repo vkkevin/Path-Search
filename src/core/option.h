@@ -33,8 +33,8 @@ public:
     int optionValue(OptionType type);
 
 private:
-    OptionUsability MOptionUsability[OptionTypeNum];
-    int MOptionValue[OptionTypeNum];
+    OptionUsability _optionUsability[OptionTypeNum];
+    int _optionValue[OptionTypeNum];
 };
 
 #endif /* __OPTION_H__ */

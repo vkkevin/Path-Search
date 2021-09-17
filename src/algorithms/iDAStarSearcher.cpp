@@ -3,7 +3,7 @@
 
 IDAStarSearcher::IDAStarSearcher()
 {
-    MStopTime = 0;
+    _stopTime = 0;
 }
 
 IDAStarSearcher::~IDAStarSearcher()
@@ -28,24 +28,24 @@ Node *IDAStarSearcher::search(Node *extNode, double shortcut)
     Node *neighbor, *endNode;
     std::vector<Node *> neighbors;
 
-    extNode->MHeuristicWeight.h = MOption->optionValue(Option::Weight) * MHeuristic->run(
-                    MGraph->distanceHorizontal(extNode, MGraph->endNode()),
-                    MGraph->distanceVertical(extNode, MGraph->endNode()));
-    extNode->MHeuristicWeight.f = extNode->MHeuristicWeight.g + extNode->MHeuristicWeight.h;
+    extNode->_heuristicWeight.h = _option->optionValue(Option::Weight) * _heuristic->run(
+                    _graph->distanceHorizontal(extNode, _graph->endNode()),
+                    _graph->distanceVertical(extNode, _graph->endNode()));
+    extNode->_heuristicWeight.f = extNode->_heuristicWeight.g + extNode->_heuristicWeight.h;
 
-    if(getSysTimeMicros() > MStopTime){
+    if(getSysTimeMicros() > _stopTime){
         return NULL;
     }
 
-    if(extNode->MHeuristicWeight.f > shortcut){
+    if(extNode->_heuristicWeight.f > shortcut){
         return extNode;
     }
 
-    if(extNode == MGraph->endNode()){
-        MPath.push_back(extNode);
+    if(extNode == _graph->endNode()){
+        _path.push_back(extNode);
         return extNode;
     }
-    neighbors = MGraph->getNeighborNodes(extNode, MOption);
+    neighbors = _graph->getNeighborNodes(extNode, _option);
     std::sort(neighbors.begin(), neighbors.end(), comp);
 
     double min = Infinity;
@@ -53,17 +53,17 @@ Node *IDAStarSearcher::search(Node *extNode, double shortcut)
         double delayTime = getSysTimeMicros();
         delayUpdate(3000);
         delayTime = getSysTimeMicros() - delayTime;
-        MStopTime += delayTime;
+        _stopTime += delayTime;
 
         neighbor = (Node *)(neighbors.at(it));
         if(neighbor->weight() == 1)
             continue;
         neighbor->setWeight(1);
-        if(MOption->optionValue(Option::VisualizeRecursion) == Option::SELECTED){
+        if(_option->optionValue(Option::VisualizeRecursion) == Option::SELECTED){
             neighbor->setStatus(Node::VISITED);
         }
-        neighbor->MHeuristicWeight.g = extNode->MHeuristicWeight.g + MGraph->distance(extNode, neighbor);
-        MPath.push_back(neighbor);
+        neighbor->_heuristicWeight.g = extNode->_heuristicWeight.g + _graph->distance(extNode, neighbor);
+        _path.push_back(neighbor);
 
         endNode = search(neighbor, shortcut);
 
@@ -71,63 +71,63 @@ Node *IDAStarSearcher::search(Node *extNode, double shortcut)
             return NULL;
         }
 
-        if(endNode == MGraph->endNode()){
+        if(endNode == _graph->endNode()){
             return endNode;
         }
 
-        if(endNode->MHeuristicWeight.f < min){
-            min = endNode->MHeuristicWeight.f;
+        if(endNode->_heuristicWeight.f < min){
+            min = endNode->_heuristicWeight.f;
         }
 
-        MPath.pop_back();
+        _path.pop_back();
         neighbor->setWeight(0);
-        if(MOption->optionValue(Option::VisualizeRecursion) == Option::SELECTED){
+        if(_option->optionValue(Option::VisualizeRecursion) == Option::SELECTED){
             neighbor->setStatus(Node::NONVISITE);
         }
     }
-    extNode->MHeuristicWeight.f = min;
+    extNode->_heuristicWeight.f = min;
     return extNode;
 }
 
 std::vector<Node *> IDAStarSearcher::iDAStarSearch()
 {
-    double shortcut = MHeuristic->run(
-                MGraph->distanceHorizontal(MGraph->startNode(), MGraph->endNode()),
-                MGraph->distanceVertical(MGraph->startNode(), MGraph->endNode()));
-    MGraph->startNode()->setWeight(1);
-    if(MOption->optionValue(Option::VisualizeRecursion) == Option::SELECTED){
-        MGraph->startNode()->setStatus(Node::VISITED);
+    double shortcut = _heuristic->run(
+                _graph->distanceHorizontal(_graph->startNode(), _graph->endNode()),
+                _graph->distanceVertical(_graph->startNode(), _graph->endNode()));
+    _graph->startNode()->setWeight(1);
+    if(_option->optionValue(Option::VisualizeRecursion) == Option::SELECTED){
+        _graph->startNode()->setStatus(Node::VISITED);
     }
-    MGraph->startNode()->MHeuristicWeight.g = 0;
-    MPath.push_back(MGraph->startNode());
+    _graph->startNode()->_heuristicWeight.g = 0;
+    _path.push_back(_graph->startNode());
 
-    MStopTime = getSysTimeMicros() + MOption->optionValue(Option::SecondsLimit) * 1000000;
+    _stopTime = getSysTimeMicros() + _option->optionValue(Option::SecondsLimit) * 1000000;
     for(long long j = 0; true; j++){
-        Node *endNode = search(MGraph->startNode(), shortcut);
+        Node *endNode = search(_graph->startNode(), shortcut);
         if(endNode == NULL){
-            MPath.clear();
-            return MPath;
+            _path.clear();
+            return _path;
         }
 
-        if(endNode == MGraph->endNode()){
-            return MPath;
+        if(endNode == _graph->endNode()){
+            return _path;
         }
-        shortcut = (endNode->MHeuristicWeight.f > shortcut + 0.5?endNode->MHeuristicWeight.f:shortcut + 0.5);
+        shortcut = (endNode->_heuristicWeight.f > shortcut + 0.5?endNode->_heuristicWeight.f:shortcut + 0.5);
     }
 
-    MPath.clear();
-    return MPath;
+    _path.clear();
+    return _path;
 }
 
 std::vector<Node *> IDAStarSearcher::run()
 {
-    heuristic = MHeuristic;
-    graph = MGraph;
+    heuristic = _heuristic;
+    graph = _graph;
     std::vector<Node *> result;
-    MPath.clear();
+    _path.clear();
     iDAStarSearch();
-    result = MPath;
-    MPath.clear();
+    result = _path;
+    _path.clear();
     refurGraph();
     return result;
 }

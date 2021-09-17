@@ -15,11 +15,11 @@ public:
     void showResultInfo(double time, double length);
 
 protected:
-    void setupUi();
+    void initUi();
 
 private:
-    QLabel *MPathLabel;
-    QLabel *MTimeLabel;
+    QLabel *_pathLabel;
+    QLabel *_timeLabel;
 };
 
 #endif /* __STATS_WIDGET_H__ */

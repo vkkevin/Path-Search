@@ -23,12 +23,12 @@ public:
     Status status();
     bool isWalkable();
 
-    int GNDireIter;
+    int _direIter;
 
 private:
-    int GNX;
-    int GNY;
-    enum Type GNType;
+    int _x;
+    int _y;
+    enum Type _type;
 
 };
 

@@ -11,13 +11,13 @@ public:
     ~MenuBar();
 
 protected:
-    void setupUi();
-    void setupConnect();
+    void initUi();
+    void initConnect();
 
 private:
-    QMenu *MGraphMenu;
-    QMenu *MAlgoMenu;
-    QMenu *MHelpMenu;
+    QMenu *_graphMenu;
+    QMenu *_algoMenu;
+    QMenu *_helpMenu;
 
 signals:
     void menuActionIsTriggered(const QString &menuName, const QString &actionName);

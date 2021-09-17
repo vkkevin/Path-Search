@@ -16,12 +16,13 @@ public:
     ~MainWindow();
 
 protected:
-    void setupUi();
-    void setupConnect();
+    void init();
+    void initUi();
+    void initConnect();
 
 private:
-    MenuBar *mMenuBar;
-    CentralWidget *mCentralWidget;
+    MenuBar *_menuBar;
+    CentralWidget *_centralWidget;
 };
 
 #endif /* __MAIN_WINDOW_H__ */

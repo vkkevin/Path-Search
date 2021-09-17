@@ -25,7 +25,7 @@ protected:
 	double chebyshev(double dx, double dy);
 
 private:
-	HeuristicType MType;
+    HeuristicType _type;
 
 };
 

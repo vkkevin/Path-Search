@@ -31,6 +31,9 @@ public:
     virtual bool isWalkable(Node *node) = 0;
     virtual void initNodePathStatus() = 0;
     virtual double pathLength(vector<Node *> path) = 0;
+
+    virtual void clearWalls() = 0;
+    virtual void clearPath() = 0;
 };
 
 #endif /* __GRAPH_H__ */

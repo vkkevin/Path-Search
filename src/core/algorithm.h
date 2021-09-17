@@ -49,9 +49,9 @@ public:
 
     friend class Finder;
 protected:
-    Graph *MGraph;
-    Option *MOption;
-    Heuristic *MHeuristic;
+    Graph *_graph;
+    Option *_option;
+    Heuristic *_heuristic;
 
     void delayUpdate(unsigned int useconds);
 
@@ -59,10 +59,10 @@ private:
     enum RunStatus{
         Run,Stop
     };
-    RunStatus MRunStatus;
-    QReadWriteLock statusRwlock;
+    RunStatus _runStatus;
+    QReadWriteLock _statusRwlock;
     void setRunStatus(RunStatus status);
-    unsigned int MDelayTimes;
+    unsigned int _delayTimes;
 
 signals:
     void updateGraph();

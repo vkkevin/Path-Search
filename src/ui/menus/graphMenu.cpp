@@ -9,8 +9,8 @@ GraphMenu::GraphMenu(QWidget *parent): QMenu(parent)
 {
     setTitle(tr("&Graph"));
     initActionList();
-    setupUi();
-    setupConnect();
+    initUi();
+    initConnect();
 }
 
 GraphMenu::~GraphMenu()
@@ -18,14 +18,14 @@ GraphMenu::~GraphMenu()
 
 }
 
-void GraphMenu::setupUi()
+void GraphMenu::initUi()
 {
-    for(int i = 0; i < MActionList.size(); i++){
-        addAction(MActionList.at(i));
+    for(int i = 0; i < _actionList.size(); i++){
+        addAction(_actionList.at(i));
     }
 }
 
-void GraphMenu::setupConnect()
+void GraphMenu::initConnect()
 {
     connect(this, SIGNAL(triggered(QAction*)), this, SLOT(triggerAction(QAction*)));
 }
@@ -33,14 +33,14 @@ void GraphMenu::setupConnect()
 void GraphMenu::initActionList()
 {
     for(int i = 0; i < MAX_ACTION_NUM; i++){
-            MActionList.push_back(actionList[i]);
+            _actionList.push_back(actionList[i]);
     }
 }
 
 void GraphMenu::triggerAction(QAction *action)
 {
     for(int i = 0; i < MAX_ACTION_NUM; i++){
-        if(action->text() == MActionList.at(i)){
+        if(action->text() == _actionList.at(i)){
             emit menuActionIsTriggered("Graph", action->text());
             return;
         }

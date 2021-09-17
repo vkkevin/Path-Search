@@ -3,11 +3,10 @@
 
 StatsFrame::StatsFrame(QWidget *parent): QFrame(parent)
 {
-    MStats = NULL;
+    _stats = NULL;
     setStyleSheet(tr("background-color: #EBEBEB;"));
-    setFixedSize(1210, 60);
-    setupUi();
-    setupConnect();
+    initUi();
+    initConnect();
 }
 
 StatsFrame::~StatsFrame()
@@ -17,25 +16,25 @@ StatsFrame::~StatsFrame()
 
 void StatsFrame::setStatsWidget(StatsWidget *stats)
 {
-    if(MStats != NULL && MStats != stats)
-        delete MStats;
+    if(_stats != NULL && _stats != stats)
+        delete _stats;
     if(stats == NULL)
         return;
-    MStats = stats;
-    setupConnect();
+    _stats = stats;
+    initConnect();
 }
 
-void StatsFrame::setupUi()
+void StatsFrame::initUi()
 {
    setStatsWidget(new StatsWidget(this));
 }
 
-void StatsFrame::setupConnect()
+void StatsFrame::initConnect()
 {
 
 }
 
 void StatsFrame::updateStats(double time, double length)
 {
-    MStats->showResultInfo(time, length);
+    _stats->showResultInfo(time, length);
 }

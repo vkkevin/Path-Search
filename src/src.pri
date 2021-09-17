@@ -13,8 +13,8 @@ HEADERS += \
     $$PWD/core/nodes/gridNode.h \
     $$PWD/core/option.h \
     $$PWD/ui/centralWidget.h \
-    $$PWD/ui/controlFrame.h \
-    $$PWD/ui/controlWidget.h \
+    $$PWD/ui/controllerFrame.h \
+    $$PWD/ui/controllerWidget.h \
     $$PWD/ui/graphFrame.h \
     $$PWD/ui/graphWidget.h \
     $$PWD/ui/graphs/gridGraphWidget.h \
@@ -49,8 +49,8 @@ SOURCES += \
     $$PWD/core/option.cpp \
     $$PWD/main.cpp \
     $$PWD/ui/centralWidget.cpp \
-    $$PWD/ui/controlFrame.cpp \
-    $$PWD/ui/controlWidget.cpp \
+    $$PWD/ui/controllerFrame.cpp \
+    $$PWD/ui/controllerWidget.cpp \
     $$PWD/ui/graphFrame.cpp \
     $$PWD/ui/graphWidget.cpp \
     $$PWD/ui/graphs/gridGraphWidget.cpp \

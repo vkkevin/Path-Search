@@ -4,7 +4,7 @@
 StatsWidget::StatsWidget(QWidget *parent): QWidget(parent)
 {
     setGeometry(QRect(0, 0, parent->width(), parent->height()));
-    setupUi();
+    initUi();
 }
 
 StatsWidget::~StatsWidget()
@@ -14,20 +14,20 @@ StatsWidget::~StatsWidget()
 
 void StatsWidget::showResultInfo(double time, double length)
 {
-    MPathLabel->setText("length: " + QString::number(length, 'g', 4));
-    MTimeLabel->setText("time: " + QString::number(time, 'f', 4) + " ms");
+    _pathLabel->setText("length: " + QString::number(length, 'g', 4));
+    _timeLabel->setText("time: " + QString::number(time, 'f', 4) + " ms");
 }
 
-void StatsWidget::setupUi()
+void StatsWidget::initUi()
 {
-    MPathLabel = new QLabel("length: ", this);
-    MPathLabel->setMinimumWidth(200);
-    MTimeLabel = new QLabel("time:  ms", this);
-    MTimeLabel->setMinimumWidth(200);
+    _pathLabel = new QLabel("length: ", this);
+    _pathLabel->setMinimumWidth(200);
+    _timeLabel = new QLabel("time:  ms", this);
+    _timeLabel->setMinimumWidth(200);
 
     QHBoxLayout *mainLayout = new QHBoxLayout();
-    mainLayout->addWidget(MPathLabel);
-    mainLayout->addWidget(MTimeLabel);
+    mainLayout->addWidget(_pathLabel);
+    mainLayout->addWidget(_timeLabel);
     mainLayout->addStretch();
     setLayout(mainLayout);
 }

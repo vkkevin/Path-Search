@@ -16,12 +16,12 @@ static QColor visitingNodeColor = QColor(QRgb(0x98fb98));
 static QColor grayNodeColor = QColor(QRgb(0x808080));
 static QColor whiteNodeColor = QColor(QRgb(0xffffff));
 
-class GridGraphWidget: public GraphWidget, public GridGraph
+class GridGraphWidget: public GraphWidget
 {
     Q_OBJECT
 
 public:
-    GridGraphWidget(int weight, int heigth, QWidget *parent = 0);
+    explicit GridGraphWidget(int weight, int heigth, QWidget *parent = 0);
     virtual ~GridGraphWidget();
     void clearWalls();
     void clearPath();
@@ -37,7 +37,8 @@ protected:
 private:
     static const int DEFAULT_RECT_WIDTH = 30;
     static const int DEFAULT_RECT_HEIGHT = 30;
-    enum GridNode::Type gridTypeIsSelected;
+    enum GridNode::Type _gridTypeIsSelected;
+    GridGraph _gridgraph;
 };
 
 

@@ -14,11 +14,11 @@ public:
     void setStatsWidget(StatsWidget *stats);
 
 protected:
-    void setupUi();
-    void setupConnect();
+    void initUi();
+    void initConnect();
 
 private:
-    StatsWidget *MStats;
+    StatsWidget *_stats;
 
 public slots:
     void updateStats(double time, double length);

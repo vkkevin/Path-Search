@@ -21,10 +21,10 @@ std::vector<Node *> AStarSearcher::aStarSearch()
     std::vector<Node *> neighbors;
     myPriorityQueue<Node *, std::vector<Node *>, cmp> nodeHeap;
 
-    extNode = MGraph->startNode();
+    extNode = _graph->startNode();
     extNode->setStatus(Node::VISITING);
     extNode->setParent(NULL);
-    extNode->MHeuristicWeight.f = extNode->MHeuristicWeight.g = 0;
+    extNode->_heuristicWeight.f = extNode->_heuristicWeight.g = 0;
     nodeHeap.push(extNode);
 
     while(!nodeHeap.empty()){
@@ -33,11 +33,11 @@ std::vector<Node *> AStarSearcher::aStarSearch()
         nodeHeap.pop();
         extNode->setStatus(Node::VISITED);
 
-        if(extNode == MGraph->endNode()){
+        if(extNode == _graph->endNode()){
             return backtrace(extNode);
         }
 
-        neighbors = MGraph->getNeighborNodes(extNode,MOption);
+        neighbors = _graph->getNeighborNodes(extNode,_option);
         for(unsigned int it = 0; it < neighbors.size(); it++){
             neighbor = (Node *)(neighbors.at(it));
 
@@ -45,16 +45,16 @@ std::vector<Node *> AStarSearcher::aStarSearch()
                 continue;
             }
 
-            double ng = extNode->MHeuristicWeight.g + MGraph->distance(neighbor, extNode);
+            double ng = extNode->_heuristicWeight.g + _graph->distance(neighbor, extNode);
 
-            if(neighbor->status() == Node::NONVISITE || ng < neighbor->MHeuristicWeight.g){
-                neighbor->MHeuristicWeight.g = ng;
+            if(neighbor->status() == Node::NONVISITE || ng < neighbor->_heuristicWeight.g){
+                neighbor->_heuristicWeight.g = ng;
                 if(neighbor->status() == Node::NONVISITE){
-                    neighbor->MHeuristicWeight.h = MOption->optionValue(Option::Weight) * MHeuristic->run(
-                            MGraph->distanceHorizontal(neighbor, MGraph->endNode()),
-                                MGraph->distanceVertical(neighbor, MGraph->endNode()));
+                    neighbor->_heuristicWeight.h = _option->optionValue(Option::Weight) * _heuristic->run(
+                            _graph->distanceHorizontal(neighbor, _graph->endNode()),
+                                _graph->distanceVertical(neighbor, _graph->endNode()));
                 }
-                neighbor->MHeuristicWeight.f = neighbor->MHeuristicWeight.g + neighbor->MHeuristicWeight.h;
+                neighbor->_heuristicWeight.f = neighbor->_heuristicWeight.g + neighbor->_heuristicWeight.h;
                 neighbor->setParent(extNode);
 
                 if(neighbor->status() == Node::NONVISITE){
@@ -78,18 +78,18 @@ std::vector<Node *> AStarSearcher::biAStarSearch()
     myPriorityQueue<Node *, std::vector<Node *>, cmp> startNodeHeap;
     myPriorityQueue<Node *, std::vector<Node *>, cmp> endNodeHeap;
 
-    extNode = MGraph->startNode();
+    extNode = _graph->startNode();
     extNode->setStatus(Node::VISITING);
     extNode->setBy(Node::BY_START);
     extNode->setParent(NULL);
-    extNode->MHeuristicWeight.f = extNode->MHeuristicWeight.g = 0;
+    extNode->_heuristicWeight.f = extNode->_heuristicWeight.g = 0;
     startNodeHeap.push(extNode);
 
-    extNode = MGraph->endNode();
+    extNode = _graph->endNode();
     extNode->setBy(Node::BY_END);
     extNode->setStatus(Node::VISITING);
     extNode->setParent(NULL);
-    extNode->MHeuristicWeight.f = extNode->MHeuristicWeight.g = 0;
+    extNode->_heuristicWeight.f = extNode->_heuristicWeight.g = 0;
     endNodeHeap.push(extNode);
 
     while(!startNodeHeap.empty() && !endNodeHeap.empty()){
@@ -100,7 +100,7 @@ std::vector<Node *> AStarSearcher::biAStarSearch()
         startNodeHeap.pop();
         extNode->setStatus(Node::VISITED);
 
-        neighbors = MGraph->getNeighborNodes(extNode,MOption);
+        neighbors = _graph->getNeighborNodes(extNode,_option);
         for(unsigned int it = 0; it < neighbors.size(); it++){
             neighbor = (Node *)(neighbors.at(it));
 
@@ -114,16 +114,16 @@ std::vector<Node *> AStarSearcher::biAStarSearch()
                 }
             }
 
-            double ng = extNode->MHeuristicWeight.g + MGraph->distance(neighbor, extNode);
+            double ng = extNode->_heuristicWeight.g + _graph->distance(neighbor, extNode);
 
-            if(neighbor->status() == Node::NONVISITE || ng < neighbor->MHeuristicWeight.g){
-                neighbor->MHeuristicWeight.g = ng;
+            if(neighbor->status() == Node::NONVISITE || ng < neighbor->_heuristicWeight.g){
+                neighbor->_heuristicWeight.g = ng;
                 if(neighbor->status() == Node::NONVISITE){
-                    neighbor->MHeuristicWeight.h = MOption->optionValue(Option::Weight) * MHeuristic->run(
-                            MGraph->distanceHorizontal(neighbor, MGraph->endNode()),
-                                MGraph->distanceVertical(neighbor, MGraph->endNode()));
+                    neighbor->_heuristicWeight.h = _option->optionValue(Option::Weight) * _heuristic->run(
+                            _graph->distanceHorizontal(neighbor, _graph->endNode()),
+                                _graph->distanceVertical(neighbor, _graph->endNode()));
                 }
-                neighbor->MHeuristicWeight.f = neighbor->MHeuristicWeight.g + neighbor->MHeuristicWeight.h;
+                neighbor->_heuristicWeight.f = neighbor->_heuristicWeight.g + neighbor->_heuristicWeight.h;
                 neighbor->setParent(extNode);
 
                 if(neighbor->status() == Node::NONVISITE){
@@ -142,7 +142,7 @@ std::vector<Node *> AStarSearcher::biAStarSearch()
         endNodeHeap.pop();
         extNode->setStatus(Node::VISITED);
 
-        neighbors = MGraph->getNeighborNodes(extNode,MOption);
+        neighbors = _graph->getNeighborNodes(extNode,_option);
         for(unsigned int it = 0; it < neighbors.size(); it++){
             neighbor = (Node *)(neighbors.at(it));
 
@@ -156,16 +156,16 @@ std::vector<Node *> AStarSearcher::biAStarSearch()
                 }
             }
 
-            double ng = extNode->MHeuristicWeight.g + MGraph->distance(neighbor, extNode);
+            double ng = extNode->_heuristicWeight.g + _graph->distance(neighbor, extNode);
 
-            if(neighbor->status() == Node::NONVISITE || ng < neighbor->MHeuristicWeight.g){
-                neighbor->MHeuristicWeight.g = ng;
+            if(neighbor->status() == Node::NONVISITE || ng < neighbor->_heuristicWeight.g){
+                neighbor->_heuristicWeight.g = ng;
                 if(neighbor->status() == Node::NONVISITE){
-                    neighbor->MHeuristicWeight.h = MOption->optionValue(Option::Weight) * MHeuristic->run(
-                            MGraph->distanceHorizontal(MGraph->startNode(), neighbor),
-                                MGraph->distanceVertical(MGraph->startNode(), neighbor));
+                    neighbor->_heuristicWeight.h = _option->optionValue(Option::Weight) * _heuristic->run(
+                            _graph->distanceHorizontal(_graph->startNode(), neighbor),
+                                _graph->distanceVertical(_graph->startNode(), neighbor));
                 }
-                neighbor->MHeuristicWeight.f = neighbor->MHeuristicWeight.g + neighbor->MHeuristicWeight.h;
+                neighbor->_heuristicWeight.f = neighbor->_heuristicWeight.g + neighbor->_heuristicWeight.h;
                 neighbor->setParent(extNode);
 
                 if(neighbor->status() == Node::NONVISITE){
@@ -185,7 +185,7 @@ std::vector<Node *> AStarSearcher::biAStarSearch()
 std::vector<Node *> AStarSearcher::run()
 {
     std::vector<Node *> result;
-    if(MOption->optionValue(Option::BiDirectional) == Option::SELECTED){
+    if(_option->optionValue(Option::BiDirectional) == Option::SELECTED){
         result = biAStarSearch();
     }else{
         result = aStarSearch();

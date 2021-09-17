@@ -42,17 +42,17 @@ public:
 public:
     struct heuristicWeight{
         double f, g, h;
-    }MHeuristicWeight;
+    }_heuristicWeight;
 
 protected:
-    int NId;
-    int NDegreeNum;
-    int NWeight;
-    enum Status NStatus;
-    Node *NParent;
-    enum By NBy;
-    enum PathType NPType;
-    int NPathId;
+    int _id;
+    int _degreeNum;
+    int _weight;
+    enum Status _status;
+    Node *_parent;
+    enum By _by;
+    enum PathType _pathType;
+    int _pathId;
 };
 
 #endif /* __NODE_H__ */

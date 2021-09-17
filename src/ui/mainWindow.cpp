@@ -2,10 +2,7 @@
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent)
 {
-//    setGeometry(QRect(300, 80, 1230, 845));
-    setFixedSize(QSize(1230, 845));
-    setupUi();
-    setupConnect();
+    init();
 }
 
 MainWindow::~MainWindow()
@@ -13,17 +10,27 @@ MainWindow::~MainWindow()
 
 }
 
-void MainWindow::setupUi()
+void MainWindow::init()
 {
-    mMenuBar = new MenuBar(this);
-    setMenuBar(mMenuBar);
-
-    mCentralWidget = new CentralWidget(this);
-    setCentralWidget(mCentralWidget);
+//    setGeometry(QRect(300, 80, 1230, 845));
+    setWindowTitle("Find Path");
+    setFixedSize(QSize(1230, 845));
+    initUi();
+    initConnect();
 }
 
-void MainWindow::setupConnect()
+void MainWindow::initUi()
 {
-    connect(mMenuBar, SIGNAL(menuActionIsTriggered(const QString &, const QString &)),
-            mCentralWidget, SLOT(responseMenuAction(const QString &, const QString &)));
+    _menuBar = new MenuBar(this);
+    setMenuBar(_menuBar);
+
+    _centralWidget = new CentralWidget(this);
+    _centralWidget->setGeometry(QRect(0, 0, width(), height()));
+    setCentralWidget(_centralWidget);
+}
+
+void MainWindow::initConnect()
+{
+    connect(_menuBar, SIGNAL(menuActionIsTriggered(const QString &, const QString &)),
+            _centralWidget, SLOT(responseMenuAction(const QString &, const QString &)));
 }

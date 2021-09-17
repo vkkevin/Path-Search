@@ -2,13 +2,11 @@
 #include "ui/graphs/gridGraphWidget.h"
 #include <QDebug>
 
-GraphFrame::GraphFrame(QWidget *parent): QFrame(parent)
+GraphFrame::GraphFrame(QWidget *parent)
+    : QFrame(parent),
+      _graph(NULL)
 {
-    MGraph = NULL;
-    setMinimumSize(QSize(845, 725));
-    setStyleSheet(tr("background-color: White;"));
-    setupUi();
-    setupConnect();
+    init();
 }
 
 
@@ -19,14 +17,14 @@ GraphFrame::~GraphFrame()
 
 void GraphFrame::setGraphWidget(GraphWidget *graph)
 {
-    if(MGraph != NULL && MGraph != graph)
-        delete MGraph;
+    if(_graph != NULL && _graph != graph)
+        delete _graph;
     if(graph == NULL)
         return;
-    MGraph = graph;
-    MGraph->show();
-    setupConnect();
-    executeGraph((Graph *)(MGraph->graph()));
+    _graph = graph;
+    _graph->show();
+    initConnect();
+    executeGraph((Graph *)(_graph->graph()));
 }
 
 void GraphFrame::setGraphWidget(const QString &graphName)
@@ -38,17 +36,25 @@ void GraphFrame::setGraphWidget(const QString &graphName)
 
 Graph *GraphFrame::graph()
 {
-    return (Graph *)(MGraph->graph());
+    return (Graph *)(_graph->graph());
+}
+
+void GraphFrame::init()
+{
+    setMinimumSize(QSize(845, 725));
+    setStyleSheet(tr("background-color: White;"));
+    initUi();
+    initConnect();
 }
 
 
-void GraphFrame::setupUi()
+void GraphFrame::initUi()
 {
     setGraphWidget("Grid Graph");
 }
 
 
-void GraphFrame::setupConnect()
+void GraphFrame::initConnect()
 {
 
 }
@@ -56,17 +62,17 @@ void GraphFrame::setupConnect()
 void GraphFrame::executeTask(const QString &taskName)
 {
     if(taskName == "clearWalls"){
-        MGraph->clearWalls();
-        MGraph->allowMouseEvent();
+        _graph->clearWalls();
+        _graph->allowMouseEvent();
     }else if(taskName == "updateGraph"){
-        MGraph->update();
+        _graph->update();
     }else if(taskName == "clearPath"){
-        MGraph->clearPath();
-        MGraph->allowMouseEvent();
+        _graph->clearPath();
+        _graph->allowMouseEvent();
     }else if(taskName == "searchRun"){
-        MGraph->prohibitMouseEvent();
+        _graph->prohibitMouseEvent();
     }else if(taskName == "searchOver"){
-        MGraph->allowMouseEvent();
+        _graph->allowMouseEvent();
     }
 }
 
@@ -77,6 +83,6 @@ void GraphFrame::executeGraph(Graph *graph)
 
 void GraphFrame::drawPath(QVector<Node *> path)
 {
-    MGraph->drawPath(path);
-    MGraph->updateGraph();
+    _graph->drawPath(path);
+    _graph->updateGraph();
 }

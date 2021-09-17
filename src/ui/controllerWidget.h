@@ -4,23 +4,23 @@
 #include <QBoxLayout>
 #include <QPushButton>
 
-class ControlWidget: public QWidget
+class ControllerWidget: public QWidget
 {
     Q_OBJECT
 
 public:
-    ControlWidget(QWidget *parent = 0);
-    virtual ~ControlWidget();
+    ControllerWidget(QWidget *parent = 0);
+    virtual ~ControllerWidget();
     void searchHasOver();
 
 protected:
-    void setupUi();
-    void setupConnect();
+    void initUi();
+    void initConnect();
 
 protected:
-    QPushButton *runButton;
-    QPushButton *brackButton;
-    QPushButton *clearButton;
+    QPushButton *_runButton;
+    QPushButton *_brackButton;
+    QPushButton *_clearButton;
 
 signals:
     void taskIsChecked(const QString &taskName);

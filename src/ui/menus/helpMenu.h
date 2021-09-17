@@ -13,11 +13,11 @@ public:
     ~HelpMenu();
 
 protected:
-    void setupUi();
-    void setupConnect();
+    void initUi();
+    void initConnect();
 
 private:
-    QVector<QString> MActionList;
+    QVector<QString> _actionList;
     void initActionList();
 
 signals:

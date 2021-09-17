@@ -6,16 +6,16 @@
 #include <QPaintEvent>
 #include "core/graph.h"
 
-class GraphWidget: public QWidget//, virtual public Graph
+class GraphWidget: public QWidget
 {
     Q_OBJECT
 
 public:
-    GraphWidget(QWidget *parent = 0);
+    explicit GraphWidget(QWidget *parent = 0);
     virtual ~GraphWidget();
     virtual void clearWalls() = 0;
     virtual void clearPath() = 0;
-    virtual Graph *graph() = 0;
+    virtual Graph *graph() { return _graph; };
     virtual void prohibitMouseEvent();
     virtual void allowMouseEvent();
     virtual void drawPath(QVector<Node *> path);
@@ -28,10 +28,11 @@ protected:
     virtual void paintEvent(QPaintEvent *) = 0;
 
 protected:
-    QVector<Node *> MPath;
+    QVector<Node *> _path;
     enum MouseStatus{
         ALLOW,PROHIBIT
-    }MMouseStatus;
+    }_mouseStatus;
+    Graph *_graph;
 };
 
 #endif /* __GRAPH_WIDGET_H__ */

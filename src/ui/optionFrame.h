@@ -19,11 +19,11 @@ public:
     Heuristic *heuristic();
 
 protected:
-    void setupUi();
-    void setupConnect();
+    void initUi();
+    void initConnect();
 
 private:
-    OptionWidget *MOption;
+    OptionWidget *_option;
 
 signals:
     void optionChanged(Option *option);

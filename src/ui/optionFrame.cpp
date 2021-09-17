@@ -8,13 +8,13 @@
 
 OptionFrame::OptionFrame(QWidget *parent): QFrame(parent)
 {
-    MOption = NULL;
+    _option = NULL;
     setMinimumHeight(625);
 //    setMaximumWidth(360);
     setFixedWidth(360);
     setStyleSheet(tr("background-color: #E8E8E8;"));
-    setupUi();
-    setupConnect();
+    initUi();
+    initConnect();
 }
 
 OptionFrame::~OptionFrame()
@@ -24,15 +24,15 @@ OptionFrame::~OptionFrame()
 
 void OptionFrame::setOptionWidget(OptionWidget *option)
 {
-    if(MOption != NULL && MOption != option)
-        delete MOption;
+    if(_option != NULL && _option != option)
+        delete _option;
     if(option == NULL)
         return;
-    MOption = option;
-    MOption->show();
-    setupConnect();
-    executeOption(MOption->option());
-    executeHeuristic(MOption->heuristic());
+    _option = option;
+    _option->show();
+    initConnect();
+    executeOption(_option->option());
+    executeHeuristic(_option->heuristic());
 }
 
 /* optionName <==> algoName */
@@ -49,26 +49,26 @@ void OptionFrame::setOptionWidget(const QString &optionName)
     }else if(optionName == "Dijkstra"){
         setOptionWidget(new DijkstraOptionWidget(optionName, this));
     }
-    MOption->setAlgoName(optionName);
+    _option->setAlgoName(optionName);
 }
 
 Option *OptionFrame::option()
 {
-    return MOption->option();
+    return _option->option();
 }
 
 Heuristic *OptionFrame::heuristic()
 {
-    return MOption->heuristic();
+    return _option->heuristic();
 }
 
-void OptionFrame::setupUi()
+void OptionFrame::initUi()
 {
     setOptionWidget("Bearch First Search");
 }
 
 
-void OptionFrame::setupConnect()
+void OptionFrame::initConnect()
 {
 
 }

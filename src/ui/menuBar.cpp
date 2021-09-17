@@ -6,8 +6,8 @@
 
 MenuBar::MenuBar(QWidget *parent): QMenuBar(parent)
 {
-    setupUi();
-    setupConnect();
+    initUi();
+    initConnect();
 }
 
 MenuBar::~MenuBar()
@@ -15,25 +15,25 @@ MenuBar::~MenuBar()
 
 }
 
-void MenuBar::setupUi()
+void MenuBar::initUi()
 {
-    MGraphMenu = new GraphMenu();
-    addMenu(MGraphMenu);
+    _graphMenu = new GraphMenu();
+    addMenu(_graphMenu);
 
-    MAlgoMenu = new AlgoMenu();
-    addMenu(MAlgoMenu);
+    _algoMenu = new AlgoMenu();
+    addMenu(_algoMenu);
 
-    MHelpMenu = new HelpMenu();
-    addMenu(MHelpMenu);
+    _helpMenu = new HelpMenu();
+    addMenu(_helpMenu);
 }
 
-void MenuBar::setupConnect()
+void MenuBar::initConnect()
 {
-    connect(MGraphMenu, SIGNAL(menuActionIsTriggered(const QString &, const QString &)),
+    connect(_graphMenu, SIGNAL(menuActionIsTriggered(const QString &, const QString &)),
             this, SLOT(responseMenuAction(const QString &,const QString &)));
-    connect(MAlgoMenu, SIGNAL(menuActionIsTriggered(const QString &, const QString &)),
+    connect(_algoMenu, SIGNAL(menuActionIsTriggered(const QString &, const QString &)),
             this, SLOT(responseMenuAction(const QString &,const QString &)));
-    connect(MHelpMenu, SIGNAL(menuActionIsTriggered(const QString &, const QString &)),
+    connect(_helpMenu, SIGNAL(menuActionIsTriggered(const QString &, const QString &)),
             this, SLOT(responseMenuAction(const QString &,const QString &)));
 }
 

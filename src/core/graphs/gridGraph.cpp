@@ -8,23 +8,23 @@ const int GridGraph::Direction[DIRECTION_NUM][2] = {
 };
 
 GridGraph::GridGraph()
-    : GWidth(DEFAULT_WIDGTH), GHeight(DEFAULT_HEIGHT)
+    : _width(DEFAULT_WIDGTH), _height(DEFAULT_HEIGHT)
 {
-    pStartNode = pEndNode = NULL;
-    GGraph = new GridNode *[GHeight];
-    for(int i = 0; i < GHeight; i++){
-        GGraph[i] = new GridNode[GWidth];
+    _startNode = _endNode = NULL;
+    _graph = new GridNode *[_height];
+    for(int i = 0; i < _height; i++){
+        _graph[i] = new GridNode[_width];
     }
     initGraph();
 }
 
 GridGraph::GridGraph(int width, int height)
-    : GWidth(width), GHeight(height)
+    : _width(width), _height(height)
 {
-    pStartNode = pEndNode = NULL;
-    GGraph = new GridNode *[GHeight];
-    for(int i = 0; i < GHeight; i++){
-        GGraph[i] = new GridNode[GWidth];
+    _startNode = _endNode = NULL;
+    _graph = new GridNode *[_height];
+    for(int i = 0; i < _height; i++){
+        _graph[i] = new GridNode[_width];
     }
     initGraph();
 }
@@ -35,68 +35,68 @@ GridGraph::~GridGraph()
 //        delete [] GGraph[i];
 //    }
 //    delete GGraph;
-    pStartNode = pEndNode = NULL;
+    _startNode = _endNode = NULL;
 }
 
 void GridGraph::setWidth(int width)
 {
-    GWidth = width;
+    _width = width;
 }
 
 int GridGraph::width()
 {
-    return GWidth;
+    return _width;
 }
 
 void GridGraph::setHeight(int height)
 {
-    GHeight = height;
+    _height = height;
 }
 
 int GridGraph::height()
 {
-    return GHeight;
+    return _height;
 }
 
 GridNode *GridGraph::at(int x, int y)
 {
-    return &GGraph[x][y];
+    return &_graph[x][y];
 }
 
 void GridGraph::setStartNode(Node *start)
 {
-    if(pStartNode != NULL){
-        pStartNode->setType(GridNode::NOOBSTACLE);
+    if(_startNode != NULL){
+        _startNode->setType(GridNode::NOOBSTACLE);
     }
-    pStartNode = (GridNode *)start;
-    pStartNode->setType(GridNode::START);
+    _startNode = (GridNode *)start;
+    _startNode->setType(GridNode::START);
 }
 
 GridNode *GridGraph::startNode()
 {
-    return pStartNode;
+    return _startNode;
 }
 
 void GridGraph::setEndNode(Node *end)
 {
-    if(pEndNode != NULL){
-        pEndNode->setType(GridNode::NOOBSTACLE);
+    if(_endNode != NULL){
+        _endNode->setType(GridNode::NOOBSTACLE);
     }
-    pEndNode = (GridNode *)end;
-    pEndNode->setType(GridNode::END);
+    _endNode = (GridNode *)end;
+    _endNode->setType(GridNode::END);
 }
 
 GridNode *GridGraph::endNode()
 {
-    return pEndNode;
+    return _endNode;
 }
 
 Node *GridGraph::nodeById(int id)
 {
-    for(int i = 0; i < GHeight; i++){
-        for(int j = 0; j < GWidth; j++){
-            if(GGraph[i][j].id() == id){
-                return &GGraph[i][j];
+    for(int i = 0; i < _height; i++){
+        for(int j = 0; j < _width; j++){
+            if(_graph[i][j].id() == id){
+                return &_graph[i][j];
             }
         }
     }
@@ -119,18 +119,35 @@ void GridGraph::addEdge(Node *start, Node *end)
 Node *GridGraph::nextAdjNode(Node *node, Option *option)
 {
     GridNode *gnode = (GridNode *)node;
-    int x = gnode->x() + Direction[gnode->GNDireIter][0];
-    int y = gnode->y() + Direction[gnode->GNDireIter][1];
+    int x = gnode->x() + Direction[gnode->_direIter][0];
+    int y = gnode->y() + Direction[gnode->_direIter][1];
 
     int allowValue = 2;
     if(option->optionUsability(Option::AllowDiagonal) &&
             option->optionValue(Option::AllowDiagonal) == Option::SELECTED){
         allowValue = 1;
     }
-    gnode->GNDireIter += allowValue;
-    if(x >= 0 && x < GHeight && y >= 0 && y < GWidth)
-        return &GGraph[x][y];
+    gnode->_direIter += allowValue;
+    if(x >= 0 && x < _height && y >= 0 && y < _width)
+        return &_graph[x][y];
     return NULL;
+}
+
+void GridGraph::clearWalls()
+{
+    for(int i = 0; i < _height; i++){
+        for(int j = 0; j < _width; j++){
+            if(_graph[i][j].type() != GridNode::START && _graph[i][j].type() != GridNode::END){
+                _graph[i][j].setType(GridNode::NOOBSTACLE);
+            }
+        }
+    }
+    initNodePathStatus();
+}
+
+void GridGraph::clearPath()
+{
+    initNodePathStatus();
 }
 
 std::vector<Node *> GridGraph::getNeighborNodes(Node *node, Option *option)
@@ -183,8 +200,8 @@ std::vector<Node *> GridGraph::getNeighborNodes(Node *node, Option *option)
 
 GridNode *GridGraph::getNodeAt(int x, int y)
 {
-    if(x >= 0 && x < GHeight && y >= 0 && y < GWidth)
-        return &GGraph[x][y];
+    if(x >= 0 && x < _height && y >= 0 && y < _width)
+        return &_graph[x][y];
     return NULL;
 }
 
@@ -215,7 +232,7 @@ bool GridGraph::isInside(Node *node)
 {
     int x = ((GridNode *)node)->x();
     int y = ((GridNode *)node)->y();
-    return (x >= 0 && x < GHeight && y >= 0 && y < GWidth);
+    return (x >= 0 && x < _height && y >= 0 && y < _width);
 }
 
 bool GridGraph::isWalkable(Node *node)
@@ -230,13 +247,13 @@ bool GridGraph::isWalkable(Node *node)
 
 void GridGraph::initNodePathStatus()
 {
-    for(int i = 0; i < GHeight; i++){
-        for(int j = 0; j < GWidth; j++){
-            GGraph[i][j].setStatus(Node::NONVISITE);
-            GGraph[i][j].setPathType(Node::NOPATH);
-            GGraph[i][j].GNDireIter = 0;
-            GGraph[i][j].setWeight(0);
-            GGraph[i][j].setBy((Node::By)-1);
+    for(int i = 0; i < _height; i++){
+        for(int j = 0; j < _width; j++){
+            _graph[i][j].setStatus(Node::NONVISITE);
+            _graph[i][j].setPathType(Node::NOPATH);
+            _graph[i][j]._direIter = 0;
+            _graph[i][j].setWeight(0);
+            _graph[i][j].setBy((Node::By)-1);
         }
     }
 }
@@ -258,13 +275,13 @@ double GridGraph::pathLength(std::vector<Node *> path)
 
 void GridGraph::initGraph()
 {
-    for(int i = 0; i < GHeight; i++){
-        for(int j = 0; j < GWidth; j++){
-            GGraph[i][j].setX(i);
-            GGraph[i][j].setY(j);
-            GGraph[i][j].setType(GridNode::NOOBSTACLE);
+    for(int i = 0; i < _height; i++){
+        for(int j = 0; j < _width; j++){
+            _graph[i][j].setX(i);
+            _graph[i][j].setY(j);
+            _graph[i][j].setType(GridNode::NOOBSTACLE);
         }
     }
-    setStartNode(&GGraph[0][0]);
-    setEndNode(&GGraph[0][1]);
+    setStartNode(&_graph[0][0]);
+    setEndNode(&_graph[0][1]);
 }

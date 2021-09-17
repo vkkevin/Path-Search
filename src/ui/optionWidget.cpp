@@ -2,8 +2,8 @@
 
 OptionWidget::OptionWidget(QString algoName, QWidget *parent): QWidget(parent)
 {
-    MAlgoName = new QLabel(algoName);
-    MAlgoName->setMaximumHeight(30);
+    _algoName = new QLabel(algoName);
+    _algoName->setMaximumHeight(30);
 }
 
 OptionWidget::~OptionWidget()
@@ -13,10 +13,10 @@ OptionWidget::~OptionWidget()
 
 void OptionWidget::setAlgoName(QString algoName)
 {
-    MAlgoName->setText(algoName);
+    _algoName->setText(algoName);
 }
 
 QString OptionWidget::algoName()
 {
-    return MAlgoName->text();
+    return _algoName->text();
 }

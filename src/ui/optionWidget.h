@@ -24,7 +24,7 @@ public:
 //    void heuristicChanged(Heuristic *heuristic);
 
 protected:
-    QLabel *MAlgoName;
+    QLabel *_algoName;
 
 };
 

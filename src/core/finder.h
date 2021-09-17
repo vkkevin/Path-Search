@@ -32,16 +32,16 @@ protected:
     void run();
 
 private:
-    Graph *MGraph;
-    Algorithm *MAlgorithm;
-    Option *MOption;
-    Heuristic *MHeuristic;
+    Graph *_graph;
+    Algorithm *_algorithm;
+    Option *_option;
+    Heuristic *_heuristic;
 
-    QVector<Node *> MPath;
-    double MTime;
-    double MLength;
+    QVector<Node *> _path;
+    double _time;
+    double _length;
 
-    FinderThread *MFinderThread;
+    FinderThread *_finderThread;
 
 public:
     void terminateSearchingTask();
@@ -68,7 +68,7 @@ public:
 protected:
     void run();
 private:
-    Finder *MFinder;
+    Finder *_finder;
 };
 
 #endif /* __FINDER_H__ */

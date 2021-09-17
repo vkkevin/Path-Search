@@ -40,17 +40,20 @@ public:
        /* 停止使用... */
     Node *nextAdjNode(Node *node, Option *option);
 
+    void clearWalls();
+    void clearPath();
+
 protected:
     void initGraph();
-    GridNode **GGraph;
+    GridNode **_graph;
 
 private:
     static const int DEFAULT_WIDGTH = 20;
     static const int DEFAULT_HEIGHT = 20;
-    int GWidth;
-    int GHeight;
-    GridNode *pStartNode;
-    GridNode *pEndNode;
+    int _width;
+    int _height;
+    GridNode *_startNode;
+    GridNode *_endNode;
 };
 
 #endif /* __GRIDGRAPH_H__ */

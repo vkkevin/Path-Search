@@ -15,9 +15,9 @@ BestFirstSearcher::~BestFirstSearcher()
 std::vector<Node *> BestFirstSearcher::run()
 {
     std::vector<Node *> result;
-    MOption->setOptionUsability(Option::Weight);
-    MOption->setOptionValue(Option::Weight, 1000000);
-    if(MOption->optionValue(Option::BiDirectional) == Option::SELECTED){
+    _option->setOptionUsability(Option::Weight);
+    _option->setOptionValue(Option::Weight, 1000000);
+    if(_option->optionValue(Option::BiDirectional) == Option::SELECTED){
         result = biAStarSearch();
     }else{
         result = aStarSearch();

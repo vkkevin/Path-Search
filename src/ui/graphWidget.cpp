@@ -3,8 +3,8 @@
 
 GraphWidget::GraphWidget(QWidget *parent): QWidget(parent)
 {
-    MPath.clear();
-    MMouseStatus = ALLOW;
+    _path.clear();
+    _mouseStatus = ALLOW;
 }
 
 GraphWidget::~GraphWidget()
@@ -14,17 +14,17 @@ GraphWidget::~GraphWidget()
 
 void GraphWidget::prohibitMouseEvent()
 {
-    MMouseStatus = PROHIBIT;
+    _mouseStatus = PROHIBIT;
 }
 
 void GraphWidget::allowMouseEvent()
 {
-    MMouseStatus = ALLOW;
+    _mouseStatus = ALLOW;
 }
 
 void GraphWidget::drawPath(QVector<Node *> path)
 {
-    MPath = path;
+    _path = path;
     updateGraph();
 }
 

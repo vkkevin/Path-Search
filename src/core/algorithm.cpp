@@ -10,11 +10,11 @@
 
 Algorithm::Algorithm(QObject *parent): QObject(parent)
 {
-    MGraph = NULL;
-    MOption = NULL;
-    MHeuristic = NULL;
+    _graph = NULL;
+    _option = NULL;
+    _heuristic = NULL;
 
-    MDelayTimes = 0;
+    _delayTimes = 0;
 }
 
 Algorithm::~Algorithm()
@@ -45,27 +45,27 @@ vector<Node *> Algorithm::biBacktrace(Node *startNode, Node *endNode)
 
 double Algorithm::pathLength(vector<Node *> path)
 {
-    return MGraph->pathLength(path);
+    return _graph->pathLength(path);
 }
 
 void Algorithm::setGraph(Graph *graph)
 {
-    MGraph = graph;
+    _graph = graph;
 }
 
 void Algorithm::setOption(Option *option)
 {
-    MOption = option;
+    _option = option;
 }
 
 /*  TODO: 设置 Heuristic 时需考虑其对算法的适用性 */
 void Algorithm::setHeuristic(Heuristic *heuristic)
 {
-    MHeuristic = heuristic;
-    if(MOption == NULL)
+    _heuristic = heuristic;
+    if(_option == NULL)
         return;
-    if(MOption->optionUsability(Option::AllowDiagonal) == Option::Usability &&
-            MOption->optionValue(Option::AllowDiagonal) == Option::SELECTED){
+    if(_option->optionUsability(Option::AllowDiagonal) == Option::Usability &&
+            _option->optionValue(Option::AllowDiagonal) == Option::SELECTED){
         if(heuristic->heuristicType() == Heuristic::Manhattan){
 //            MHeuristic->setHeuristicType(Heuristic::Octile);
         }
@@ -84,7 +84,7 @@ void Algorithm::mySleep(unsigned int useconds)
 #elif defined (Q_OS_WIN32)
     double startTime = getSysTimeMicros();
     Sleep(useconds / 1000);
-    MDelayTimes += getSysTimeMicros() - startTime;
+    _delayTimes += getSysTimeMicros() - startTime;
 #endif
 }
 
@@ -93,21 +93,21 @@ void Algorithm::delayUpdate(unsigned int useconds)
     mySleep(useconds);
     while(1){
         mySleep(1);
-        statusRwlock.lockForRead();
-        if(MRunStatus == Run){
-            statusRwlock.unlock();
+        _statusRwlock.lockForRead();
+        if(_runStatus == Run){
+            _statusRwlock.unlock();
             break;
         }
-        statusRwlock.unlock();
+        _statusRwlock.unlock();
     }
     updateGraph();
 }
 
 void Algorithm::setRunStatus(Algorithm::RunStatus status)
 {
-    statusRwlock.lockForWrite();
-    MRunStatus = status;
-    statusRwlock.unlock();
+    _statusRwlock.lockForWrite();
+    _runStatus = status;
+    _statusRwlock.unlock();
 }
 
 void Algorithm::refurGraph()

@@ -7,20 +7,20 @@ DijkstraOptionWidget::DijkstraOptionWidget(QString algoName, QWidget *parent)
 {
     setGeometry(QRect(0, 0, parentWidget()->width(), parentWidget()->height()));
 
-    MOption = new Option();
+    _option = new Option();
     initOption();
-    setupUi();
-    setupConnect();
+    initUi();
+    initConnect();
 }
 
 DijkstraOptionWidget::~DijkstraOptionWidget()
 {
-    delete MOption;
+    delete _option;
 }
 
 Option *DijkstraOptionWidget::option()
 {
-    return MOption;
+    return _option;
 }
 
 Heuristic *DijkstraOptionWidget::heuristic()
@@ -28,72 +28,72 @@ Heuristic *DijkstraOptionWidget::heuristic()
     return NULL;
 }
 
-void DijkstraOptionWidget::setupUi()
+void DijkstraOptionWidget::initUi()
 {
-    MOptionGroup = new QGroupBox(tr("Options"), this);
-    MOptionGroup->setMinimumHeight(200);
+    _optionGroup = new QGroupBox(tr("Options"), this);
+    _optionGroup->setMinimumHeight(200);
 
     QVBoxLayout *optionLayout = new QVBoxLayout();
-    optionLayout->addWidget(MAlgoName);
-    optionLayout->addWidget(MOptionGroup);
+    optionLayout->addWidget(_algoName);
+    optionLayout->addWidget(_optionGroup);
     optionLayout->addStretch();
     setLayout(optionLayout);
-    setupOptionGroupUi();
+    initOptionGroupUi();
 }
 
-void DijkstraOptionWidget::setupOptionGroupUi()
+void DijkstraOptionWidget::initOptionGroupUi()
 {
-    MAllowDiagonal = new QCheckBox(tr("Allow Diagonal"), MOptionGroup);
-    MAllowDiagonal->setCursor(QCursor(Qt::PointingHandCursor));
-    MBiDirectional = new QCheckBox(tr("Bi-Directional"), MOptionGroup);
-    MBiDirectional->setCursor(QCursor(Qt::PointingHandCursor));
-    MDontCrossCorners = new QCheckBox(tr("Don't Cross Corners"), MOptionGroup);
-    MDontCrossCorners->setCursor(QCursor(Qt::PointingHandCursor));
+    _allowDiagonal = new QCheckBox(tr("Allow Diagonal"), _optionGroup);
+    _allowDiagonal->setCursor(QCursor(Qt::PointingHandCursor));
+    _biDirectional = new QCheckBox(tr("Bi-Directional"), _optionGroup);
+    _biDirectional->setCursor(QCursor(Qt::PointingHandCursor));
+    _dontCrossCorners = new QCheckBox(tr("Don't Cross Corners"), _optionGroup);
+    _dontCrossCorners->setCursor(QCursor(Qt::PointingHandCursor));
 
     QVBoxLayout *optionLayout = new QVBoxLayout();
-    optionLayout->addWidget(MAllowDiagonal);
-    optionLayout->addWidget(MBiDirectional);
-    optionLayout->addWidget(MDontCrossCorners);
-    MOptionGroup->setLayout(optionLayout);
+    optionLayout->addWidget(_allowDiagonal);
+    optionLayout->addWidget(_biDirectional);
+    optionLayout->addWidget(_dontCrossCorners);
+    _optionGroup->setLayout(optionLayout);
 }
 
-void DijkstraOptionWidget::setupConnect()
+void DijkstraOptionWidget::initConnect()
 {
-    connect(MAllowDiagonal, SIGNAL(stateChanged(int)), this, SLOT(allowDiagonalStateChanged(int)));
-    connect(MBiDirectional, SIGNAL(stateChanged(int)), this, SLOT(biDirectionalStateChanged(int)));
-    connect(MDontCrossCorners, SIGNAL(stateChanged(int)), this, SLOT(dontCrossCornersStateChanged(int)));
+    connect(_allowDiagonal, SIGNAL(stateChanged(int)), this, SLOT(allowDiagonalStateChanged(int)));
+    connect(_biDirectional, SIGNAL(stateChanged(int)), this, SLOT(biDirectionalStateChanged(int)));
+    connect(_dontCrossCorners, SIGNAL(stateChanged(int)), this, SLOT(dontCrossCornersStateChanged(int)));
 }
 
 void DijkstraOptionWidget::initOption()
 {
-    MOption->setOptionUsability(Option::AllowDiagonal);
-    MOption->setOptionUsability(Option::BiDirectional);
-    MOption->setOptionUsability(Option::DontCrossCorners);
+    _option->setOptionUsability(Option::AllowDiagonal);
+    _option->setOptionUsability(Option::BiDirectional);
+    _option->setOptionUsability(Option::DontCrossCorners);
 }
 
 void DijkstraOptionWidget::allowDiagonalStateChanged(int state)
 {
     switch(state){
-        case 0: MOption->setOptionValue(Option::AllowDiagonal, Option::UNSELECTED); break;
+        case 0: _option->setOptionValue(Option::AllowDiagonal, Option::UNSELECTED); break;
         case 1: qDebug() << state;break;
-        case 2: MOption->setOptionValue(Option::AllowDiagonal, Option::SELECTED); break;
+        case 2: _option->setOptionValue(Option::AllowDiagonal, Option::SELECTED); break;
     }
 }
 
 void DijkstraOptionWidget::biDirectionalStateChanged(int state)
 {
     switch(state){
-        case 0: MOption->setOptionValue(Option::BiDirectional , Option::UNSELECTED); break;
+        case 0: _option->setOptionValue(Option::BiDirectional , Option::UNSELECTED); break;
         case 1: qDebug() << state;break;
-        case 2: MOption->setOptionValue(Option::BiDirectional, Option::SELECTED); break;
+        case 2: _option->setOptionValue(Option::BiDirectional, Option::SELECTED); break;
     }
 }
 
 void DijkstraOptionWidget::dontCrossCornersStateChanged(int state)
 {
     switch(state){
-        case 0: MOption->setOptionValue(Option::DontCrossCorners, Option::UNSELECTED); break;
+        case 0: _option->setOptionValue(Option::DontCrossCorners, Option::UNSELECTED); break;
         case 1: qDebug() << state;break;
-        case 2: MOption->setOptionValue(Option::DontCrossCorners, Option::SELECTED); break;
+        case 2: _option->setOptionValue(Option::DontCrossCorners, Option::SELECTED); break;
     }
 }

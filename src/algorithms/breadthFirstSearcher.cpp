@@ -20,8 +20,8 @@ std::vector<Node *> BreadthFirstSearcher::breadthFirstSearch()
     std::vector<Node *> result;
 
     std::queue<Node *> nodeQue;
-    nodeQue.push(MGraph->startNode());
-    MGraph->startNode()->setParent(NULL);
+    nodeQue.push(_graph->startNode());
+    _graph->startNode()->setParent(NULL);
 
     while(!nodeQue.empty()){
         delayUpdate(10000);
@@ -30,11 +30,11 @@ std::vector<Node *> BreadthFirstSearcher::breadthFirstSearch()
         nodeQue.pop();
         extNode->setStatus(Node::VISITED);
 
-        if(extNode == MGraph->endNode()){
-            return backtrace(MGraph->endNode());
+        if(extNode == _graph->endNode()){
+            return backtrace(_graph->endNode());
         }
 
-        neighbor = MGraph->getNeighborNodes(extNode, MOption);
+        neighbor = _graph->getNeighborNodes(extNode, _option);
         for(unsigned int it = 0; it < neighbor.size(); it++){
             if(((Node *)(neighbor.at(it)))->status() == Node::NONVISITE){
                 ((Node *)(neighbor.at(it)))->setParent(extNode);
@@ -55,15 +55,15 @@ std::vector<Node *> BreadthFirstSearcher::biBreadthFirstSearch()
     std::queue<Node *> endNodeQue;
     Node *neighbor;
 
-    startNodeQue.push(MGraph->startNode());
-    MGraph->startNode()->setParent(NULL);
-    MGraph->startNode()->setBy(Node::BY_START);
-    MGraph->startNode()->setStatus(Node::VISITING);
+    startNodeQue.push(_graph->startNode());
+    _graph->startNode()->setParent(NULL);
+    _graph->startNode()->setBy(Node::BY_START);
+    _graph->startNode()->setStatus(Node::VISITING);
 
-    endNodeQue.push(MGraph->endNode());
-    MGraph->endNode()->setParent(NULL);
-    MGraph->endNode()->setBy(Node::BY_END);
-    MGraph->endNode()->setStatus(Node::VISITING);
+    endNodeQue.push(_graph->endNode());
+    _graph->endNode()->setParent(NULL);
+    _graph->endNode()->setBy(Node::BY_END);
+    _graph->endNode()->setStatus(Node::VISITING);
 
     while(!startNodeQue.empty() && !endNodeQue.empty()){
         delayUpdate(10000);
@@ -73,7 +73,7 @@ std::vector<Node *> BreadthFirstSearcher::biBreadthFirstSearch()
         startNodeQue.pop();
         extNode->setStatus(Node::VISITED);
 
-        neighbors = MGraph->getNeighborNodes(extNode, MOption);
+        neighbors = _graph->getNeighborNodes(extNode, _option);
         for(unsigned int it = 0; it < neighbors.size(); it++){
             neighbor = neighbors.at(it);
 
@@ -99,7 +99,7 @@ std::vector<Node *> BreadthFirstSearcher::biBreadthFirstSearch()
         endNodeQue.pop();
         extNode->setStatus(Node::VISITED);
 
-        neighbors = MGraph->getNeighborNodes(extNode, MOption);
+        neighbors = _graph->getNeighborNodes(extNode, _option);
         for(unsigned int it = 0; it < neighbors.size(); it++){
             neighbor = neighbors.at(it);
 
@@ -127,7 +127,7 @@ std::vector<Node *> BreadthFirstSearcher::biBreadthFirstSearch()
 std::vector<Node *> BreadthFirstSearcher::run()
 {
     std::vector<Node *> result;
-    if(MOption->optionValue(Option::BiDirectional) == Option::SELECTED){
+    if(_option->optionValue(Option::BiDirectional) == Option::SELECTED){
         result = biBreadthFirstSearch();
     }else{
         result = breadthFirstSearch();

@@ -14,15 +14,16 @@ public:
     ~CentralWidget();
 
 protected:
-    void setupUi();
-    void setupConnect();
+    void init();
+    void initUi();
+    void initConnect();
 
 private:
-    QFrame *MGraphFrame;
-    QFrame *MOptionFrame;
-    QFrame *MControlFrame;
-    QFrame *MStatsFrame;
-    Finder *MFinder;
+    QFrame *_graphFrame;
+    QFrame *_optionFrame;
+    QFrame *_controlFrame;
+    QFrame *_statsFrame;
+    Finder *_finder;
 
 signals:
     void taskIsChecked(const QString &taskName);

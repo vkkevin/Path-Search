@@ -5,8 +5,8 @@ AlgoMenu::AlgoMenu(QWidget *parent): QMenu(parent)
 {
     setTitle(tr("&Algorithm"));
     initActionList();
-    setupUi();
-    setupConnect();
+    initUi();
+    initConnect();
 }
 
 AlgoMenu::~AlgoMenu()
@@ -15,14 +15,14 @@ AlgoMenu::~AlgoMenu()
 }
 
 
-void AlgoMenu::setupUi()
+void AlgoMenu::initUi()
 {
-    for(int i = 0; i < MActionList.size(); i++){
-        addAction(MActionList.at(i));
+    for(int i = 0; i < _actionList.size(); i++){
+        addAction(_actionList.at(i));
     }
 }
 
-void AlgoMenu::setupConnect()
+void AlgoMenu::initConnect()
 {
     connect(this, SIGNAL(triggered(QAction*)), this, SLOT(triggerAction(QAction*)));
 }
@@ -30,14 +30,14 @@ void AlgoMenu::setupConnect()
 void AlgoMenu::initActionList()
 {
     for(int i = 0; i < MAX_ALGO_NUM; i++){
-            MActionList.push_back(algoNameList[i]);
+            _actionList.push_back(algoNameList[i]);
     }
 }
 
 void AlgoMenu::triggerAction(QAction *action)
 {
     for(int i = 0; i < MAX_ALGO_NUM; i++){
-        if(action->text() == MActionList.at(i)){
+        if(action->text() == _actionList.at(i)){
             emit menuActionIsTriggered("Algorithm", action->text());
         }
     }

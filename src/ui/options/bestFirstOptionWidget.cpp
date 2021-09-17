@@ -8,153 +8,153 @@ BestFirstOptionWidget::BestFirstOptionWidget(QString algoName, QWidget *parent)
     : OptionWidget(algoName, parent)
 {
     setGeometry(QRect(0, 0, parentWidget()->width(), parentWidget()->height()));
-    MOption = new Option();
+    _option = new Option();
     initOption();
-    MHeuristic = new Heuristic();
-    setupUi();
-    setupConnect();
+    _heuristic = new Heuristic();
+    initUi();
+    initConnect();
 }
 
 BestFirstOptionWidget::~BestFirstOptionWidget()
 {
-    delete  MHeuristic;
-    delete  MOption;
+    delete  _heuristic;
+    delete  _option;
 }
 
 Option *BestFirstOptionWidget::option()
 {
-    return MOption;
+    return _option;
 }
 
 Heuristic *BestFirstOptionWidget::heuristic()
 {
-    return MHeuristic;
+    return _heuristic;
 }
 
-void BestFirstOptionWidget::setupUi()
+void BestFirstOptionWidget::initUi()
 {
-    MHeuristicGroup = new QGroupBox(tr("Heuristic"), this);
-    MHeuristicGroup->setMaximumHeight(200);
-    MOptionGroup = new QGroupBox(tr("Options"), this);
-    setupHeuristicGroupUi();
-    setupOptionGroupUi();
+    _heuristicGroup = new QGroupBox(tr("Heuristic"), this);
+    _heuristicGroup->setMaximumHeight(200);
+    _optionGroup = new QGroupBox(tr("Options"), this);
+    initHeuristicGroupUi();
+    initOptionGroupUi();
 
     QVBoxLayout *mainLayout = new QVBoxLayout();
-    mainLayout->addWidget(MAlgoName);
-    mainLayout->addWidget(MHeuristicGroup);
-    mainLayout->addWidget(MOptionGroup);
+    mainLayout->addWidget(_algoName);
+    mainLayout->addWidget(_heuristicGroup);
+    mainLayout->addWidget(_optionGroup);
     mainLayout->addStretch();
     setLayout(mainLayout);
 }
 
-void BestFirstOptionWidget::setupOptionGroupUi()
+void BestFirstOptionWidget::initOptionGroupUi()
 {
-    MAllowDiagonal = new QCheckBox(tr("Allow Diagonal"), MOptionGroup);
-    MAllowDiagonal->setCursor(QCursor(Qt::PointingHandCursor));
-    MBiDirectional = new QCheckBox(tr("Bi-Directional"), MOptionGroup);
-    MBiDirectional->setCursor(QCursor(Qt::PointingHandCursor));
-    MDontCrossCorners = new QCheckBox(tr("Don't Cross Corners"), MOptionGroup);
-    MDontCrossCorners->setCursor(QCursor(Qt::PointingHandCursor));
+    _allowDiagonal = new QCheckBox(tr("Allow Diagonal"), _optionGroup);
+    _allowDiagonal->setCursor(QCursor(Qt::PointingHandCursor));
+    _biDirectional = new QCheckBox(tr("Bi-Directional"), _optionGroup);
+    _biDirectional->setCursor(QCursor(Qt::PointingHandCursor));
+    _dontCrossCorners = new QCheckBox(tr("Don't Cross Corners"), _optionGroup);
+    _dontCrossCorners->setCursor(QCursor(Qt::PointingHandCursor));
 
     QVBoxLayout *optionLayout = new QVBoxLayout();
-    optionLayout->addWidget(MAllowDiagonal);
-    optionLayout->addWidget(MBiDirectional);
-    optionLayout->addWidget(MDontCrossCorners);
+    optionLayout->addWidget(_allowDiagonal);
+    optionLayout->addWidget(_biDirectional);
+    optionLayout->addWidget(_dontCrossCorners);
 
-    MOptionGroup->setLayout(optionLayout);
+    _optionGroup->setLayout(optionLayout);
 }
 
-void BestFirstOptionWidget::setupHeuristicGroupUi()
+void BestFirstOptionWidget::initHeuristicGroupUi()
 {
-    MManhattan = new QRadioButton(tr("manhattan"), MHeuristicGroup);
-    MManhattan->setCursor(QCursor(Qt::PointingHandCursor));
-    MManhattan->setChecked(true);
-    MEuclidean = new QRadioButton(tr("euclidean"), MHeuristicGroup);
-    MEuclidean->setCursor(QCursor(Qt::PointingHandCursor));
-    MOctile = new QRadioButton(tr("octile"), MHeuristicGroup);
-    MOctile->setCursor(QCursor(Qt::PointingHandCursor));
-    MChebyshev = new QRadioButton(tr("chebyshev"), MHeuristicGroup);
-    MChebyshev->setCursor(QCursor(Qt::PointingHandCursor));
+    _manhattan = new QRadioButton(tr("manhattan"), _heuristicGroup);
+    _manhattan->setCursor(QCursor(Qt::PointingHandCursor));
+    _manhattan->setChecked(true);
+    _euclidean = new QRadioButton(tr("euclidean"), _heuristicGroup);
+    _euclidean->setCursor(QCursor(Qt::PointingHandCursor));
+    _octile = new QRadioButton(tr("octile"), _heuristicGroup);
+    _octile->setCursor(QCursor(Qt::PointingHandCursor));
+    _chebyshev = new QRadioButton(tr("chebyshev"), _heuristicGroup);
+    _chebyshev->setCursor(QCursor(Qt::PointingHandCursor));
 
     QVBoxLayout *heuristicLayout = new QVBoxLayout();
-    heuristicLayout->addWidget(MManhattan);
-    heuristicLayout->addWidget(MEuclidean);
-    heuristicLayout->addWidget(MOctile);
-    heuristicLayout->addWidget(MChebyshev);
-    MHeuristicGroup->setLayout(heuristicLayout);
+    heuristicLayout->addWidget(_manhattan);
+    heuristicLayout->addWidget(_euclidean);
+    heuristicLayout->addWidget(_octile);
+    heuristicLayout->addWidget(_chebyshev);
+    _heuristicGroup->setLayout(heuristicLayout);
 }
 
-void BestFirstOptionWidget::setupConnect()
+void BestFirstOptionWidget::initConnect()
 {
-    connect(MManhattan, SIGNAL(toggled(bool)), this, SLOT(manhattanChecked(bool)));
-    connect(MEuclidean, SIGNAL(toggled(bool)), this, SLOT(euclideanChecked(bool)));
-    connect(MOctile, SIGNAL(toggled(bool)), this, SLOT(octileChecked(bool)));
-    connect(MChebyshev, SIGNAL(toggled(bool)), this, SLOT(chebyshevChecked(bool)));
-    connect(MAllowDiagonal, SIGNAL(stateChanged(int)), this, SLOT(allowDiagonalStateChanged(int)));
-    connect(MBiDirectional, SIGNAL(stateChanged(int)), this, SLOT(biDirectionalStateChanged(int)));
-    connect(MDontCrossCorners, SIGNAL(stateChanged(int)), this, SLOT(dontCrossCornersStateChanged(int)));
+    connect(_manhattan, SIGNAL(toggled(bool)), this, SLOT(manhattanChecked(bool)));
+    connect(_euclidean, SIGNAL(toggled(bool)), this, SLOT(euclideanChecked(bool)));
+    connect(_octile, SIGNAL(toggled(bool)), this, SLOT(octileChecked(bool)));
+    connect(_chebyshev, SIGNAL(toggled(bool)), this, SLOT(chebyshevChecked(bool)));
+    connect(_allowDiagonal, SIGNAL(stateChanged(int)), this, SLOT(allowDiagonalStateChanged(int)));
+    connect(_biDirectional, SIGNAL(stateChanged(int)), this, SLOT(biDirectionalStateChanged(int)));
+    connect(_dontCrossCorners, SIGNAL(stateChanged(int)), this, SLOT(dontCrossCornersStateChanged(int)));
 }
 
 void BestFirstOptionWidget::initOption()
 {
-    MOption->setOptionUsability(Option::AllowDiagonal);
-    MOption->setOptionUsability(Option::BiDirectional);
-    MOption->setOptionUsability(Option::DontCrossCorners);
-    MOption->setOptionUsability(Option::Weight);
+    _option->setOptionUsability(Option::AllowDiagonal);
+    _option->setOptionUsability(Option::BiDirectional);
+    _option->setOptionUsability(Option::DontCrossCorners);
+    _option->setOptionUsability(Option::Weight);
 }
 
 void BestFirstOptionWidget::allowDiagonalStateChanged(int state)
 {
     switch(state){
-        case 0: MOption->setOptionValue(Option::AllowDiagonal, Option::UNSELECTED); break;
+        case 0: _option->setOptionValue(Option::AllowDiagonal, Option::UNSELECTED); break;
         case 1: qDebug() << state;break;
-        case 2: MOption->setOptionValue(Option::AllowDiagonal, Option::SELECTED); break;
+        case 2: _option->setOptionValue(Option::AllowDiagonal, Option::SELECTED); break;
     }
 }
 
 void BestFirstOptionWidget::biDirectionalStateChanged(int state)
 {
     switch(state){
-        case 0: MOption->setOptionValue(Option::BiDirectional , Option::UNSELECTED); break;
+        case 0: _option->setOptionValue(Option::BiDirectional , Option::UNSELECTED); break;
         case 1: qDebug() << state;break;
-        case 2: MOption->setOptionValue(Option::BiDirectional, Option::SELECTED); break;
+        case 2: _option->setOptionValue(Option::BiDirectional, Option::SELECTED); break;
     }
 }
 
 void BestFirstOptionWidget::dontCrossCornersStateChanged(int state)
 {
     switch(state){
-        case 0: MOption->setOptionValue(Option::DontCrossCorners, Option::UNSELECTED); break;
+        case 0: _option->setOptionValue(Option::DontCrossCorners, Option::UNSELECTED); break;
         case 1: qDebug() << state;break;
-        case 2: MOption->setOptionValue(Option::DontCrossCorners, Option::SELECTED); break;
+        case 2: _option->setOptionValue(Option::DontCrossCorners, Option::SELECTED); break;
     }
 }
 
 void BestFirstOptionWidget::manhattanChecked(bool checked)
 {
     if(checked){
-        MHeuristic->setHeuristicType(Heuristic::Manhattan);
+        _heuristic->setHeuristicType(Heuristic::Manhattan);
     }
 }
 
 void BestFirstOptionWidget::euclideanChecked(bool checked)
 {
     if(checked){
-        MHeuristic->setHeuristicType(Heuristic::Euclidean);
+        _heuristic->setHeuristicType(Heuristic::Euclidean);
     }
 }
 
 void BestFirstOptionWidget::octileChecked(bool checked)
 {
     if(checked){
-        MHeuristic->setHeuristicType(Heuristic::Octile);
+        _heuristic->setHeuristicType(Heuristic::Octile);
     }
 }
 
 void BestFirstOptionWidget::chebyshevChecked(bool checked)
 {
     if(checked){
-        MHeuristic->setHeuristicType(Heuristic::Chebyshev);
+        _heuristic->setHeuristicType(Heuristic::Chebyshev);
     }
 }
 

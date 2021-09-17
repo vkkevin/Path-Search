@@ -1,7 +1,7 @@
 #include "core/heuristic.h"
 #include <cmath>
 
-Heuristic::Heuristic(Heuristic::HeuristicType type): MType(type)
+Heuristic::Heuristic(Heuristic::HeuristicType type): _type(type)
 {
 
 }
@@ -13,17 +13,17 @@ Heuristic::~Heuristic()
 
 void Heuristic::setHeuristicType(Heuristic::HeuristicType type)
 {
-    MType = type;
+    _type = type;
 }
 
 Heuristic::HeuristicType Heuristic::heuristicType()
 {
-    return MType;
+    return _type;
 }
 
 double Heuristic::run(double dx, double dy)
 {
-    switch(MType){
+    switch(_type){
         case Manhattan:   return manhattan(dx, dy);
         case Euclidean:     return euclidean(dx, dy);
         case Octile:            return octile(dx, dy);

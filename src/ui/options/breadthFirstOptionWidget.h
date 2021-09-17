@@ -18,19 +18,19 @@ public:
     Heuristic *heuristic();
 
 protected:
-    void setupUi();
-    void setupOptionGroupUi();
-    void setupConnect();
+    void initUi();
+    void initOptionGroupUi();
+    void initConnect();
     void initOption();
 
 protected:
-    Option *MOption;
-    QGroupBox *MOptionGroup;
+    Option *_option;
+    QGroupBox *_optionGroup;
 
 private:
-    QCheckBox *MAllowDiagonal;
-    QCheckBox *MBiDirectional;
-    QCheckBox *MDontCrossCorners;
+    QCheckBox *_allowDiagonal;
+    QCheckBox *_biDirectional;
+    QCheckBox *_dontCrossCorners;
 
 public slots:
     void allowDiagonalStateChanged(int state);

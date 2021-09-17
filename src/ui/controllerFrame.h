@@ -2,31 +2,31 @@
 #define __CONTROL_FRAME_H__
 
 #include <QFrame>
-#include "ui/controlWidget.h"
+#include "ui/controllerWidget.h"
 
-class ControlFrame: public QFrame
+class ControllerFrame: public QFrame
 {
     Q_OBJECT
 
 public:
-    ControlFrame(QWidget *parent = 0);
-    ~ControlFrame();
-    void setControlWidget(ControlWidget *control);
+    ControllerFrame(QWidget *parent = 0);
+    ~ControllerFrame();
+    void setControllerWidget(ControllerWidget *controller);
     void searchHasOver();
 
 protected:
-    void setupUi();
-    void setupConnect();
+    void initUi();
+    void initConnect();
 
 private:
-    ControlWidget *MControl;
+    ControllerWidget *_controller;
 
 signals:
     void taskIsChecked(const QString &taskName);
 
 public slots:
     void executeTask(const QString &taskName);
-    void refurbishControl();
+    void refurbishController();
 };
 
 #endif /* __CONTROL_FRAME_H__ */

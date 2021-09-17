@@ -1,11 +1,11 @@
 #include "core/node.h"
 
 Node::Node(int id, Node *parent)
-    : NId(id), NDegreeNum(0), NWeight(0)
+    : _id(id), _degreeNum(0), _weight(0)
 {
-    NParent = parent;
-    NStatus = NONVISITE;
-    NPType = NOPATH;
+    _parent = parent;
+    _status = NONVISITE;
+    _pathType = NOPATH;
 }
 
 Node::~Node()
@@ -15,71 +15,71 @@ Node::~Node()
 
 void Node::setId(int id)
 {
-    NId = id;
+    _id = id;
 }
 
 int Node::id()
 {
-    return NId;
+    return _id;
 }
 
 void Node::setDegreeNumber(int degreeNum)
 {
-    NDegreeNum = degreeNum;
+    _degreeNum = degreeNum;
 }
 
 int Node::degreeNumber()
 {
-    return NDegreeNum;
+    return _degreeNum;
 }
 
 void Node::setWeight(int weight)
 {
-    NWeight = weight;
+    _weight = weight;
 }
 
 int Node::weight()
 {
-    return NWeight;
+    return _weight;
 }
 
 void Node::setStatus(Node::Status status)
 {
-    NStatus = status;
+    _status = status;
 }
 
 Node::Status Node::status()
 {
-    return NStatus;
+    return _status;
 }
 
 void Node::setParent(Node *parent)
 {
-    NParent = parent;
+    _parent = parent;
 }
 
 Node *Node::parent()
 {
-    return NParent;
+    return _parent;
 }
 
 void Node::setBy(Node::By by)
 {
-    NBy = by;
+    _by = by;
 }
 
 Node::By Node::by()
 {
-    return NBy;
+    return _by;
 }
 
 void Node::setPathType(Node::PathType ptype)
 {
-    NPType = ptype;
+    _pathType = ptype;
 }
 
 Node::PathType Node::pathType()
 {
-    return NPType;
+    return _pathType;
 }
 

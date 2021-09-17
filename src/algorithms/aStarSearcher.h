@@ -17,7 +17,7 @@ public:
 
 struct cmp{
     bool operator()(Node *nodeA, Node *nodeB){
-        return nodeA->MHeuristicWeight.f > nodeB->MHeuristicWeight.f;
+        return nodeA->_heuristicWeight.f > nodeB->_heuristicWeight.f;
     }
 };
 

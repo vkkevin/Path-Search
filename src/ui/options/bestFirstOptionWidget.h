@@ -20,27 +20,27 @@ public:
     Heuristic *heuristic();
 
 protected:
-    void setupUi();
-    void setupOptionGroupUi();
-    void setupHeuristicGroupUi();
-    void setupConnect();
+    void initUi();
+    void initOptionGroupUi();
+    void initHeuristicGroupUi();
+    void initConnect();
     void initOption();
 
 protected:
-    Option *MOption;
-    QGroupBox *MOptionGroup;
-    Heuristic *MHeuristic;
-    QGroupBox *MHeuristicGroup;
+    Option *_option;
+    QGroupBox *_optionGroup;
+    Heuristic *_heuristic;
+    QGroupBox *_heuristicGroup;
 
 private:
-    QRadioButton *MManhattan;
-    QRadioButton *MEuclidean;
-    QRadioButton *MOctile;
-    QRadioButton *MChebyshev;
+    QRadioButton *_manhattan;
+    QRadioButton *_euclidean;
+    QRadioButton *_octile;
+    QRadioButton *_chebyshev;
 
-    QCheckBox *MAllowDiagonal;
-    QCheckBox *MBiDirectional;
-    QCheckBox *MDontCrossCorners;
+    QCheckBox *_allowDiagonal;
+    QCheckBox *_biDirectional;
+    QCheckBox *_dontCrossCorners;
 
 public slots:
     void allowDiagonalStateChanged(int state);
