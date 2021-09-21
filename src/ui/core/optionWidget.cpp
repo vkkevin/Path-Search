@@ -1,4 +1,4 @@
-#include "ui/optionWidget.h"
+#include "optionWidget.h"
 
 OptionWidget::OptionWidget(QString algoName, QWidget *parent): QWidget(parent)
 {

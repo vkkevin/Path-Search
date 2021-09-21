@@ -10,7 +10,7 @@ class CentralWidget: public QWidget
     Q_OBJECT
 
 public:
-    CentralWidget(QWidget *parent = 0);
+    CentralWidget(QWidget *parent = nullptr);
     ~CentralWidget();
 
 protected:

@@ -1,9 +1,9 @@
-#ifndef __GRID_GRAPH_WIDGET_H__
-#define __GRID_GRAPH_WIDGET_H__
+#ifndef GRID_GRAPH_WIDGET_H
+#define GRID_GRAPH_WIDGET_H
 
 #include <QtGlobal>
 #include "ui/graphWidget.h"
-#include "core/graphs/gridGraph.h"
+#include "graph/gridGraph.h"
 
 /*
  * Graph display color
@@ -21,7 +21,7 @@ class GridGraphWidget: public GraphWidget
     Q_OBJECT
 
 public:
-    explicit GridGraphWidget(int weight, int heigth, QWidget *parent = 0);
+    GridGraphWidget(int width, int height, QWidget *parent = nullptr);
     virtual ~GridGraphWidget();
     void clearWalls();
     void clearPath();
@@ -42,4 +42,4 @@ private:
 };
 
 
-#endif /* __GRID_GRAPH_WIDGET_H__ */
+#endif /* GRID_GRAPH_WIDGET_H */

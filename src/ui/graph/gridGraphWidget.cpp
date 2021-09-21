@@ -4,9 +4,9 @@
 #include <QGraphicsOpacityEffect>
 #include <QDebug>
 
-GridGraphWidget::GridGraphWidget(int weight, int heigth, QWidget *parent)
+GridGraphWidget::GridGraphWidget(int width, int height, QWidget *parent)
     : GraphWidget(parent),
-      _gridgraph(weight, heigth)
+      _gridgraph(width, height)
 {
     setGeometry(QRect(0, 0, parentWidget()->width(), parentWidget()->height()));
     QGraphicsOpacityEffect *opacityEffect = new QGraphicsOpacityEffect(this);

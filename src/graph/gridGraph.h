@@ -1,8 +1,8 @@
-#ifndef __GRIDGRAPH_H__
-#define __GRIDGRAPH_H__
+#ifndef GRIDGRAPH_H
+#define GRIDGRAPH_H
 
 #include "core/graph.h"
-#include "core/nodes/gridNode.h"
+#include "node/gridNode.h"
 
 class GridGraph: public Graph
 {
@@ -13,7 +13,7 @@ public:
 public:
     GridGraph();
     GridGraph(int width, int height);
-    ~GridGraph();
+    virtual ~GridGraph();
     void setWidth(int width);
     int width();
     void setHeight(int height);
@@ -56,4 +56,4 @@ private:
     GridNode *_endNode;
 };
 
-#endif /* __GRIDGRAPH_H__ */
+#endif /* GRIDGRAPH_H */

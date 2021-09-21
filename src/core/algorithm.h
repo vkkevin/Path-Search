@@ -34,7 +34,7 @@ public:
         DijkstraSearch
     };
 
-    Algorithm(QObject *parent = 0);
+    Algorithm(QObject *parent = nullptr);
     virtual ~Algorithm();
 
     virtual vector<Node *> run() = 0;

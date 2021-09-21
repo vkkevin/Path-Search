@@ -12,9 +12,9 @@ MainWindow::~MainWindow()
 
 void MainWindow::init()
 {
-//    setGeometry(QRect(300, 80, 1230, 845));
-    setWindowTitle("Find Path");
-    setFixedSize(QSize(1230, 845));
+    setGeometry(QRect(300, 80, 1230, 845));
+    setWindowTitle("Path Search");
+//    setFixedSize(QSize(1230, 845));
     initUi();
     initConnect();
 }

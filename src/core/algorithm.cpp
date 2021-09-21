@@ -80,7 +80,7 @@ void Algorithm::mySleep(unsigned int useconds)
 #ifdef Q_OS_LINUX
     double startTime = getSysTimeMicros();
     usleep(useconds);
-    MDelayTimes += getSysTimeMicros() - startTime;
+    _delayTimes += getSysTimeMicros() - startTime;
 #elif defined (Q_OS_WIN32)
     double startTime = getSysTimeMicros();
     Sleep(useconds / 1000);

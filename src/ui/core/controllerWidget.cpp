@@ -1,4 +1,4 @@
-#include "ui/controllerWidget.h"
+#include "controllerWidget.h"
 #include <QDebug>
 
 ControllerWidget::ControllerWidget(QWidget *parent): QWidget(parent)

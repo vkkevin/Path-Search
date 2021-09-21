@@ -1,4 +1,4 @@
-#include "ui/statsWidget.h"
+#include "statsWidget.h"
 #include <QBoxLayout>
 
 StatsWidget::StatsWidget(QWidget *parent): QWidget(parent)

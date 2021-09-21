@@ -1,5 +1,5 @@
-#ifndef __ALGO_MENU_H__
-#define __ALGO_MENU_H__
+#ifndef ALGO_MENU_H
+#define ALGO_MENU_H
 
 #include <QMenu>
 
@@ -8,7 +8,7 @@ class AlgoMenu: public QMenu
      Q_OBJECT
 
 public:
-    AlgoMenu(QWidget *parent = 0);
+    AlgoMenu(QWidget *parent = nullptr);
     ~AlgoMenu();
 
 protected:
@@ -27,4 +27,4 @@ public slots:
 
 };
 
-#endif /* __ALGO_MENU_H__ */
+#endif /* ALGO_MENU_H */

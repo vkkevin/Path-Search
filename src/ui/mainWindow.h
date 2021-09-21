@@ -1,5 +1,5 @@
-#ifndef __MAIN_WINDOW_H__
-#define __MAIN_WINDOW_H__
+#ifndef MAIN_WINDOW_H
+#define MAIN_WINDOW_H
 
 #include <QMainWindow>
 #include <QMenuBar>
@@ -12,7 +12,7 @@ class MainWindow: public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
+    explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
 protected:
@@ -25,4 +25,4 @@ private:
     CentralWidget *_centralWidget;
 };
 
-#endif /* __MAIN_WINDOW_H__ */
+#endif /* MAIN_WINDOW_H */

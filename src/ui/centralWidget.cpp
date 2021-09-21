@@ -1,4 +1,4 @@
-#include "ui/centralWidget.h"
+#include "centralWidget.h"
 #include "ui/graphFrame.h"
 #include "ui/optionFrame.h"
 #include "ui/controllerFrame.h"
@@ -132,21 +132,21 @@ void CentralWidget::executeTask(const QString &taskName)
 }
 void CentralWidget::executeOption(Option *option)
 {
-    if(option == NULL)
+    if(option == nullptr)
         return;
     _finder->setOption(option);
 }
 
 void CentralWidget::executeHeuristic(Heuristic *heuristic)
 {
-    if(heuristic == NULL)
+    if(heuristic == nullptr)
         return;
     _finder->setHeuristic(heuristic);
 }
 
 void CentralWidget::executeGraph(Graph *graph)
 {
-    if(graph == NULL)
+    if(graph == nullptr)
         return;
     _finder->setGraph(graph);
 }

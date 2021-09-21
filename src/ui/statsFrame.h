@@ -1,15 +1,15 @@
-#ifndef __STATS_FRAME_H__
-#define __STATS_FRAME_H__
+#ifndef STATS_FRAME_H
+#define STATS_FRAME_H
 
 #include <QFrame>
-#include "ui/statsWidget.h"
+#include "ui/core/statsWidget.h"
 
 class StatsFrame: public QFrame
 {
     Q_OBJECT
 
 public:
-    StatsFrame(QWidget *parent = 0);
+    StatsFrame(QWidget *parent = nullptr);
     ~StatsFrame();
     void setStatsWidget(StatsWidget *stats);
 

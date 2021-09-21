@@ -1,13 +1,19 @@
-#ifndef __MENU_BAR_H__
-#define __MENU_BAR_H__
+#ifndef MENU_BAR_H
+#define MENU_BAR_H
 
 #include <QMenuBar>
+#include "ui/menu/algoMenu.h"
+#include "ui/menu/graphMenu.h"
+#include "ui/menu/helpMenu.h"
+
+static QVector<>
+
 class MenuBar: public QMenuBar
 {
     Q_OBJECT
 
 public:
-    MenuBar(QWidget *parent = 0);
+    MenuBar(QWidget *parent = nullptr);
     ~MenuBar();
 
 protected:
@@ -15,9 +21,7 @@ protected:
     void initConnect();
 
 private:
-    QMenu *_graphMenu;
-    QMenu *_algoMenu;
-    QMenu *_helpMenu;
+    QVector<QMenu*> _menus;
 
 signals:
     void menuActionIsTriggered(const QString &menuName, const QString &actionName);

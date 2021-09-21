@@ -1,14 +1,14 @@
 #include "ui/optionFrame.h"
-#include "ui/options/aStarOptionWidget.h"
-#include "ui/options/iDAStarOptionWidget.h"
-#include "ui/options/breadthFirstOptionWidget.h"
-#include "ui/options/bestFirstOptionWidget.h"
-#include "ui/options/dijkstraOptionWidget.h"
+#include "ui/option/aStarOptionWidget.h"
+#include "ui/option/iDAStarOptionWidget.h"
+#include "ui/option/breadthFirstOptionWidget.h"
+#include "ui/option/bestFirstOptionWidget.h"
+#include "ui/option/dijkstraOptionWidget.h"
 #include <QDebug>
 
 OptionFrame::OptionFrame(QWidget *parent): QFrame(parent)
 {
-    _option = NULL;
+    _option = nullptr;
     setMinimumHeight(625);
 //    setMaximumWidth(360);
     setFixedWidth(360);
@@ -24,9 +24,9 @@ OptionFrame::~OptionFrame()
 
 void OptionFrame::setOptionWidget(OptionWidget *option)
 {
-    if(_option != NULL && _option != option)
+    if(_option != nullptr && _option != option)
         delete _option;
-    if(option == NULL)
+    if(option == nullptr)
         return;
     _option = option;
     _option->show();

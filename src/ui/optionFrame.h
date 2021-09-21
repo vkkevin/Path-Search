@@ -1,17 +1,17 @@
-#ifndef __OPTION_FRAME_H__
-#define __OPTION_FRAME_H__
+#ifndef OPTION_FRAME_H
+#define OPTION_FRAME_H
 
 #include <QFrame>
 #include <QLabel>
 #include "core/option.h"
-#include "ui/optionWidget.h"
+#include "ui/core/optionWidget.h"
 
 class OptionFrame: public QFrame
 {
     Q_OBJECT
 
 public:
-    OptionFrame(QWidget *parent = 0);
+    OptionFrame(QWidget *parent = nullptr);
     ~OptionFrame();
     void setOptionWidget(OptionWidget *option);
     void setOptionWidget(const QString &optionName);

@@ -1,4 +1,4 @@
-#include "ui/options/aStarOptionWidget.h"
+#include "aStarOptionWidget.h"
 #include "core/option.h"
 #include "core/heuristic.h"
 #include <QBoxLayout>

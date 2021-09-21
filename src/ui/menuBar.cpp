@@ -1,7 +1,7 @@
-#include "ui/menuBar.h"
-#include "ui/menus/graphMenu.h"
-#include "ui/menus/algoMenu.h"
-#include "ui/menus/helpMenu.h"
+#include "menuBar.h"
+#include "ui/menu/graphMenu.h"
+#include "ui/menu/algoMenu.h"
+#include "ui/menu/helpMenu.h"
 #include <QDebug>
 
 MenuBar::MenuBar(QWidget *parent): QMenuBar(parent)

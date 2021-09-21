@@ -1,5 +1,5 @@
-#ifndef __GRAPH_H__
-#define __GRAPH_H__
+#ifndef GRAPH_H
+#define GRAPH_H
 
 #include <vector>
 #include "node.h"
@@ -15,7 +15,7 @@ public:
 
 public:
     Graph();
-    ~Graph();
+    virtual ~Graph();
     virtual void addNode(Node *node) = 0;
     virtual void addEdge(Node *start, Node *end) = 0;
     virtual Node* nodeById(int id) = 0;
@@ -36,4 +36,4 @@ public:
     virtual void clearPath() = 0;
 };
 
-#endif /* __GRAPH_H__ */
+#endif /* GRAPH_H */

@@ -1,23 +1,21 @@
-#ifndef __GRAPH_MENU_H__
-#define __GRAPH_MENU_H__
+#ifndef HELP_MENU_H
+#define HELP_MENU_H
 
 #include <QMenu>
+#include <QString>
 
-class GraphMenu: public QMenu
+class HelpMenu: public QMenu
 {
     Q_OBJECT
 
 public:
-    GraphMenu(QWidget *parent = 0);
-    ~GraphMenu();
+    HelpMenu(QWidget *parent = nullptr);
+    ~HelpMenu();
 
 protected:
+    void init();
     void initUi();
     void initConnect();
-
-private:
-    QVector<QString> _actionList;
-    void initActionList();
 
 signals:
     void menuActionIsTriggered(const QString &menuName, const QString &actionName);
@@ -27,4 +25,4 @@ public slots:
 
 };
 
-#endif /* __GRAPH_MENU_H__ */
+#endif /* HELP_MENU_H */

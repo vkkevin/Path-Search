@@ -1,4 +1,4 @@
-#include "ui/graphWidget.h"
+#include "graphWidget.h"
 #include <QDebug>
 
 GraphWidget::GraphWidget(QWidget *parent): QWidget(parent)
