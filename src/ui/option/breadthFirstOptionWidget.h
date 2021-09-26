@@ -1,7 +1,7 @@
-#ifndef __BREADTH_FIRST_OPTION_WIDGET_H__
-#define __BREADTH_FIRST_OPTION_WIDGET_H__
+#ifndef BREADTH_FIRST_OPTION_WIDGET_H
+#define BREADTH_FIRST_OPTION_WIDGET_H
 
-#include "ui/optionWidget.h"
+#include "ui/core/optionWidget.h"
 #include "core/heuristic.h"
 #include "core/option.h"
 #include <QGroupBox>
@@ -38,4 +38,4 @@ public slots:
     void dontCrossCornersStateChanged(int state);
 };
 
-#endif /* __BREADTH_FIRST_OPTION_WIDGET_H__ */
+#endif /* BREADTH_FIRST_OPTION_WIDGET_H */

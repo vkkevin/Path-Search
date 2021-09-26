@@ -1,5 +1,5 @@
-#ifndef __ALGORITHM_H__
-#define __ALGORITHM_H__
+#ifndef ALGORITHM_H
+#define ALGORITHM_H
 
 #include "node.h"
 #include "graph.h"
@@ -15,8 +15,7 @@ using std::vector;
 
 double getSysTimeMicros();
 
-static const int MAX_ALGO_NUM = 5;
-static const QString algoNameList[MAX_ALGO_NUM] = {
+static const QVector<QString> algoNameList = {
     "A*","IDA*","Bearch First Search","Best First Search","Dijkstra"
     //TODO: 添加算法名并在 Algorithm类 中添加其类型
 };
@@ -72,4 +71,4 @@ public:
 };
 
 
-#endif /* __ALGORITHM_H__ */
+#endif /* ALGORITHM_H */

@@ -1,4 +1,4 @@
-#include "ui/options/dijkstraOptionWidget.h"
+#include "dijkstraOptionWidget.h"
 #include <QBoxLayout>
 #include <QDebug>
 

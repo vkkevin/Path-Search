@@ -33,4 +33,4 @@ public slots:
     void drawPath(QVector<Node *> path);
 };
 
-#endif /* __GRAPH_FRAME_H__ */
+#endif /* GRAPH_FRAME_H */

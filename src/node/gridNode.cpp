@@ -1,4 +1,4 @@
-#include "core/nodes/gridNode.h"
+#include "gridNode.h"
 
 GridNode::GridNode(int x, int y)
     : _x(x), _y(y)

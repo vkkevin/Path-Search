@@ -1,7 +1,7 @@
-#ifndef __BEST_FIRST_OPTION_WIDGET_H__
-#define __BEST_FIRST_OPTION_WIDGET_H__
+#ifndef BEST_FIRST_OPTION_WIDGET_H
+#define BEST_FIRST_OPTION_WIDGET_H
 
-#include "ui/optionWidget.h"
+#include "ui/core/optionWidget.h"
 #include <QRadioButton>
 #include <QCheckBox>
 #include <QSpinBox>
@@ -54,4 +54,4 @@ public slots:
 };
 
 
-#endif /* __BEST_FIRST_OPTION_WIDGET_H__ */
+#endif /* BEST_FIRST_OPTION_WIDGET_H */

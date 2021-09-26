@@ -2,7 +2,7 @@
 #define GRID_GRAPH_WIDGET_H
 
 #include <QtGlobal>
-#include "ui/graphWidget.h"
+#include "ui/core/graphWidget.h"
 #include "graph/gridGraph.h"
 
 /*

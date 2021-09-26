@@ -1,4 +1,4 @@
-#include "algorithms/aStarSearcher.h"
+#include "aStarSearcher.h"
 #include <queue>
 #include <ctime>
 #include <unistd.h>

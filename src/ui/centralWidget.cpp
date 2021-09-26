@@ -9,19 +9,6 @@
 #include <QMetaType>
 #include <QDebug>
 
-const char *helpMessage[][2] = {
-    {"About", "<p>版本: v1.0</p>"
-                     "<p>原创: <a href='http://qiao.github.io/PathFinding.js/visual/'>PathFinding</a>（灵感源）</p>"
-                     "<p>特别感谢: <a href='https://github.com/qiao'>Xueqiao (Joe) Xu</a></p>"
-                     "<p>项目地址: <a href='https://github.com/ckkcoder'>github</a></p>"
-                     ""},
-    {"Help", "<h2>Instructions</h2>"
-     "<p>Click within the <font color='grey'>white</font> grid and drag your mouse to draw obstacles. </p>"
-     "<p>Drag the <font color='green'>green</font> node to set the start position. </p>"
-     "<p>Drag the <font color='red'>red</font> node to set the end position. </p>"
-     "<p>Choose an algorithm from the top menu. </p>"
-     "<p>Click \"Start Search\" in the lower-right corner to start the animation.</p>"}
-};
 
 CentralWidget::CentralWidget(QWidget *parent): QWidget(parent)
 {
@@ -97,12 +84,6 @@ void CentralWidget::responseMenuAction(const QString menuName, const QString act
         ((OptionFrame *)_optionFrame)->setOptionWidget(actionName);
         // 给 Finder 发送信号， 改变其算法
         _finder->setAlgorithm(actionName);
-    }else if(menuName == "Help"){
-        if(actionName == "About"){
-            QMessageBox::about(this, QObject::trUtf8(helpMessage[0][0]), QObject::trUtf8(helpMessage[0][1]));
-        }else if(actionName == "Help"){
-            QMessageBox::about(this, helpMessage[1][0], helpMessage[1][1]);
-        }
     }
 }
 

@@ -1,5 +1,5 @@
 #include "ui/graphFrame.h"
-#include "ui/graphs/gridGraphWidget.h"
+#include "ui/graph/gridGraphWidget.h"
 #include <QDebug>
 
 GraphFrame::GraphFrame(QWidget *parent)

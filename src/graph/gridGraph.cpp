@@ -1,4 +1,4 @@
-#include "core/graphs/gridGraph.h"
+#include "gridGraph.h"
 #include <iostream>
 #include <cmath>
 

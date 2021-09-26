@@ -1,7 +1,7 @@
-#ifndef __A_STAR_OPTION_WIDGET_H__
-#define __A_STAR_OPTION_WIDGET_H__
+#ifndef A_STAR_OPTION_WIDGET_H
+#define A_STAR_OPTION_WIDGET_H
 
-#include "ui/optionWidget.h"
+#include "ui/core/optionWidget.h"
 #include <QRadioButton>
 #include <QCheckBox>
 #include <QSpinBox>
@@ -55,4 +55,4 @@ public slots:
 
 };
 
-#endif /* __A_STAR_OPTION_WIDGET_H__ */
+#endif /* A_STAR_OPTION_WIDGET_H */

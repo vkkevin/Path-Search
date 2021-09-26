@@ -1,4 +1,4 @@
-#include "algorithms/breadthFirstSearcher.h"
+#include "breadthFirstSearcher.h"
 #include <queue>
 #include <ctime>
 #include <unistd.h>

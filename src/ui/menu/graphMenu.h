@@ -1,11 +1,14 @@
-#ifndef __GRAPH_MENU_H__
-#define __GRAPH_MENU_H__
+#ifndef GRAPH_MENU_H
+#define GRAPH_MENU_H
 
-#include <QMenu>
+#include "ui/core/menuWidget.h"
 
-class GraphMenu: public QMenu
+class GraphMenu: public MenuWidget
 {
     Q_OBJECT
+
+public:
+    static QMenu* create();
 
 public:
     GraphMenu(QWidget *parent = nullptr);
@@ -13,7 +16,6 @@ public:
 
 protected:
     void initUi();
-    void initConnect();
 
 signals:
     void menuActionIsTriggered(const QString &menuName, const QString &actionName);
@@ -23,4 +25,4 @@ public slots:
 
 };
 
-#endif /* __GRAPH_MENU_H__ */
+#endif /* GRAPH_MENU_H */

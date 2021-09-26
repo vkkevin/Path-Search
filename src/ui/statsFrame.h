@@ -24,4 +24,4 @@ public slots:
     void updateStats(double time, double length);
 };
 
-#endif /* __STATS_FRAME_H__ */
+#endif /* STATS_FRAME_H */

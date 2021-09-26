@@ -1,12 +1,15 @@
 #ifndef HELP_MENU_H
 #define HELP_MENU_H
 
-#include <QMenu>
+#include "ui/core/menuWidget.h"
 #include <QString>
 
-class HelpMenu: public QMenu
+class HelpMenu: public MenuWidget
 {
     Q_OBJECT
+
+public:
+    static QMenu* create();
 
 public:
     HelpMenu(QWidget *parent = nullptr);
@@ -15,7 +18,6 @@ public:
 protected:
     void init();
     void initUi();
-    void initConnect();
 
 signals:
     void menuActionIsTriggered(const QString &menuName, const QString &actionName);

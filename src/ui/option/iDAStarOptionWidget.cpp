@@ -1,4 +1,4 @@
-#include "ui/options/iDAStarOptionWidget.h"
+#include "iDAStarOptionWidget.h"
 #include "core/option.h"
 #include "core/heuristic.h"
 #include <QBoxLayout>

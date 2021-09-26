@@ -1,11 +1,14 @@
 #ifndef ALGO_MENU_H
 #define ALGO_MENU_H
 
-#include <QMenu>
+#include "ui/core/menuWidget.h"
 
-class AlgoMenu: public QMenu
+class AlgoMenu: public MenuWidget
 {
      Q_OBJECT
+
+public:
+    static QMenu* create();
 
 public:
     AlgoMenu(QWidget *parent = nullptr);
@@ -13,7 +16,6 @@ public:
 
 protected:
     void initUi();
-    void initConnect();
 
 private:
     QVector<QString> _actionList;

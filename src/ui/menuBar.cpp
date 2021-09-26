@@ -17,24 +17,22 @@ MenuBar::~MenuBar()
 
 void MenuBar::initUi()
 {
-    _graphMenu = new GraphMenu();
-    addMenu(_graphMenu);
-
-    _algoMenu = new AlgoMenu();
-    addMenu(_algoMenu);
-
-    _helpMenu = new HelpMenu();
-    addMenu(_helpMenu);
+    _menus.reserve(menuCreaters.size());
+    QVector<MenuCreateFunc>::iterator it = menuCreaters.begin();
+    for (; it != menuCreaters.end(); ++it) {
+        QMenu *menu = (*it)();
+        addMenu(menu);
+        _menus.push_back(menu);
+    }
 }
 
 void MenuBar::initConnect()
 {
-    connect(_graphMenu, SIGNAL(menuActionIsTriggered(const QString &, const QString &)),
-            this, SLOT(responseMenuAction(const QString &,const QString &)));
-    connect(_algoMenu, SIGNAL(menuActionIsTriggered(const QString &, const QString &)),
-            this, SLOT(responseMenuAction(const QString &,const QString &)));
-    connect(_helpMenu, SIGNAL(menuActionIsTriggered(const QString &, const QString &)),
-            this, SLOT(responseMenuAction(const QString &,const QString &)));
+    QVector<QMenu*>::iterator it = _menus.begin();
+    for (; it != _menus.end(); ++it) {
+        connect(*it, SIGNAL(menuActionIsTriggered(const QString &, const QString &)),
+                this, SLOT(responseMenuAction(const QString &,const QString &)));
+    }
 }
 
 void MenuBar::responseMenuAction(const QString &menuName, const QString &actionName)

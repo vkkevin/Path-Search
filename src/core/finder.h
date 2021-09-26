@@ -1,5 +1,5 @@
-#ifndef __FINDER_H__
-#define __FINDER_H__
+#ifndef FINDER_H
+#define FINDER_H
 
 #include <QObject>
 #include <QVector>
@@ -71,4 +71,4 @@ private:
     Finder *_finder;
 };
 
-#endif /* __FINDER_H__ */
+#endif /* FINDER_H */

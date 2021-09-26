@@ -1,10 +1,14 @@
-#include "ui/menus/algoMenu.h"
+#include "algoMenu.h"
 #include "core/algorithm.h"
 
-AlgoMenu::AlgoMenu(QWidget *parent): QMenu(parent)
+QMenu *AlgoMenu::create()
+{
+    return new AlgoMenu();
+}
+
+AlgoMenu::AlgoMenu(QWidget *parent): MenuWidget(parent)
 {
     setTitle(tr("&Algorithm"));
-    initActionList();
     initUi();
     initConnect();
 }
@@ -17,28 +21,18 @@ AlgoMenu::~AlgoMenu()
 
 void AlgoMenu::initUi()
 {
-    for(int i = 0; i < _actionList.size(); i++){
-        addAction(_actionList.at(i));
-    }
-}
-
-void AlgoMenu::initConnect()
-{
-    connect(this, SIGNAL(triggered(QAction*)), this, SLOT(triggerAction(QAction*)));
-}
-
-void AlgoMenu::initActionList()
-{
-    for(int i = 0; i < MAX_ALGO_NUM; i++){
-            _actionList.push_back(algoNameList[i]);
+    QVector<QString>::const_iterator it = algoNameList.begin();
+    for(; it != algoNameList.end(); ++it){
+        addAction(*it);
     }
 }
 
 void AlgoMenu::triggerAction(QAction *action)
 {
-    for(int i = 0; i < MAX_ALGO_NUM; i++){
-        if(action->text() == _actionList.at(i)){
-            emit menuActionIsTriggered("Algorithm", action->text());
+    QVector<QString>::const_iterator it = algoNameList.begin();
+    for(; it != algoNameList.end(); ++it){
+        if(action->text() == *it){
+            emit menuActionIsTriggered("Algorithm", *it);
         }
     }
 }

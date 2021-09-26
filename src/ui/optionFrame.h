@@ -34,4 +34,4 @@ public slots:
     void executeHeuristic(Heuristic *heuristic);
 };
 
-#endif /* __OPTION_FRAME_H__ */
+#endif /* OPTION_FRAME_H */

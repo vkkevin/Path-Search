@@ -1,5 +1,5 @@
-#ifndef __CONTROL_WIDGET_H__
-#define __CONTROL_WIDGET_H__
+#ifndef CONTROL_WIDGET_H
+#define CONTROL_WIDGET_H
 
 #include <QBoxLayout>
 #include <QPushButton>
@@ -34,4 +34,4 @@ public slots:
      void test(const QString &taskName);
 };
 
-#endif /* __CONTROL_WIDGET_H__ */
+#endif /* CONTROL_WIDGET_H */

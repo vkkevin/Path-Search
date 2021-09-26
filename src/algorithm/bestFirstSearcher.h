@@ -1,8 +1,8 @@
-#ifndef __BEST_FIRST_SEARCHER_H__
-#define __BEST_FIRST_SEARCHER_H__
+#ifndef BEST_FIRST_SEARCHER_H
+#define BEST_FIRST_SEARCHER_H
 
 #include "core/algorithm.h"
-#include "algorithms/aStarSearcher.h"
+#include "aStarSearcher.h"
 
 class BestFirstSearcher: public AStarSearcher
 {
@@ -12,4 +12,4 @@ public:
     std::vector<Node *> run();
 };
 
-#endif /* __BEST_FIRST_SEARCHER_H__ */
+#endif /* BEST_FIRST_SEARCHER_H */

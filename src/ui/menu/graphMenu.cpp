@@ -1,6 +1,11 @@
-#include "ui/menus/graphMenu.h"
+#include "graphMenu.h"
 
-GraphMenu::GraphMenu(QWidget *parent): QMenu(parent)
+QMenu *GraphMenu::create()
+{
+    return new GraphMenu();
+}
+
+GraphMenu::GraphMenu(QWidget *parent): MenuWidget(parent)
 {
     setTitle(tr("&Graph"));
     initUi();
@@ -15,11 +20,6 @@ GraphMenu::~GraphMenu()
 void GraphMenu::initUi()
 {
     addAction("Grid Graph");
-}
-
-void GraphMenu::initConnect()
-{
-    connect(this, SIGNAL(triggered(QAction*)), this, SLOT(triggerAction(QAction*)));
 }
 
 void GraphMenu::triggerAction(QAction *action)

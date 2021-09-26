@@ -1,5 +1,5 @@
 #include "ui/controllerFrame.h"
-#include "ui/controllerWidget.h"
+#include "ui/core/controllerWidget.h"
 #include <QDebug>
 
 ControllerFrame::ControllerFrame(QWidget *parent): QFrame(parent)

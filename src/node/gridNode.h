@@ -1,5 +1,5 @@
-#ifndef __GRIDNODE_H__
-#define __GRIDNODE_H__
+#ifndef GRIDNODE_H
+#define GRIDNODE_H
 
 #include "core/node.h"
 
@@ -32,4 +32,4 @@ private:
 
 };
 
-#endif /* __GRIDNODE_H__ */
+#endif /* GRIDNODE_H */

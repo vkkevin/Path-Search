@@ -6,7 +6,11 @@
 #include "ui/menu/graphMenu.h"
 #include "ui/menu/helpMenu.h"
 
-static QVector<>
+static QVector<MenuCreateFunc> menuCreaters = {
+    AlgoMenu::create,
+    GraphMenu::create,
+    HelpMenu::create
+};
 
 class MenuBar: public QMenuBar
 {
@@ -30,4 +34,4 @@ public slots:
     void responseMenuAction(const QString &menuName, const QString &actionName);
 };
 
-#endif /* __MENU_BAR_H__ */
+#endif /* MENU_BAR_H */

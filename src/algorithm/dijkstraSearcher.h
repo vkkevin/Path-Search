@@ -1,8 +1,8 @@
-#ifndef __DIJKSTRA_SEARCHER_H__
-#define __DIJKSTRA_SEARCHER_H__
+#ifndef DIJKSTRA_SEARCHER_H
+#define DIJKSTRA_SEARCHER_H
 
 #include "core/algorithm.h"
-#include "algorithms/aStarSearcher.h"
+#include "aStarSearcher.h"
 
 class DijkstraSearcher: public AStarSearcher
 {
@@ -12,4 +12,4 @@ public:
     std::vector<Node *> run();
 };
 
-#endif /* __DIJKSTRA_SEARCHER_H__ */
+#endif /* DIJKSTRA_SEARCHER_H */

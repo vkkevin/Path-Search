@@ -29,4 +29,4 @@ public slots:
     void refurbishController();
 };
 
-#endif /* __CONTROL_FRAME_H__ */
+#endif /* CONTROL_FRAME_H */

@@ -1,5 +1,5 @@
 #include "ui/statsFrame.h"
-#include "ui/statsWidget.h"
+#include "ui/core/statsWidget.h"
 
 StatsFrame::StatsFrame(QWidget *parent): QFrame(parent)
 {

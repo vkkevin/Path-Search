@@ -1,5 +1,5 @@
-#ifndef __NODE_H__
-#define __NODE_H__
+#ifndef NODE_H
+#define NODE_H
 
 class Node
 {
@@ -55,4 +55,4 @@ protected:
     int _pathId;
 };
 
-#endif /* __NODE_H__ */
+#endif /* NODE_H */

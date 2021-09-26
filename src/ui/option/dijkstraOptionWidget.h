@@ -1,7 +1,7 @@
-#ifndef __DIJKSTRA_OPTION_WIDGET_H__
-#define __DIJKSTRA_OPTION_WIDGET_H__
+#ifndef DIJKSTRA_OPTION_WIDGET_H
+#define DIJKSTRA_OPTION_WIDGET_H
 
-#include "ui/optionWidget.h"
+#include "ui/core/optionWidget.h"
 #include "core/heuristic.h"
 #include "core/option.h"
 #include <QGroupBox>
@@ -38,4 +38,4 @@ public slots:
     void dontCrossCornersStateChanged(int state);
 };
 
-#endif /* __DIJKSTRA_OPTION_WIDGET_H__ */
+#endif /* DIJKSTRA_OPTION_WIDGET_H */

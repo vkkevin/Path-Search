@@ -1,4 +1,4 @@
-#include "algorithms/iDAStarSearcher.h"
+#include "iDAStarSearcher.h"
 #include <queue>
 
 IDAStarSearcher::IDAStarSearcher()

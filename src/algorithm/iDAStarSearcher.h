@@ -1,5 +1,5 @@
-#ifndef __IDA_STAR_SEARCHER_H__
-#define __IDA_STAR_SEARCHER_H__
+#ifndef IDA_STAR_SEARCHER_H
+#define IDA_STAR_SEARCHER_H
 
 #include "core/algorithm.h"
 
@@ -19,4 +19,4 @@ public:
 
 };
 
-#endif /* __IDA_STAR_SEARCHER_H__ */
+#endif /* IDA_STAR_SEARCHER_H */

@@ -1,5 +1,5 @@
-#ifndef __STATS_WIDGET_H__
-#define __STATS_WIDGET_H__
+#ifndef STATS_WIDGET_H
+#define STATS_WIDGET_H
 
 #include <QWidget>
 #include <QLabel>
@@ -22,4 +22,4 @@ private:
     QLabel *_timeLabel;
 };
 
-#endif /* __STATS_WIDGET_H__ */
+#endif /* STATS_WIDGET_H */

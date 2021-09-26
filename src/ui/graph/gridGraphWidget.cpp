@@ -1,4 +1,4 @@
-#include "ui/graphs/gridGraphWidget.h"
+#include "gridGraphWidget.h"
 
 #include <QPainter>
 #include <QGraphicsOpacityEffect>

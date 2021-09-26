@@ -1,5 +1,5 @@
-#ifndef __OPTION_WIDGET_H__
-#define __OPTION_WIDGET_H__
+#ifndef OPTION_WIDGET_H
+#define OPTION_WIDGET_H
 
 #include <QWidget>
 #include <QLabel>
@@ -29,4 +29,4 @@ protected:
 };
 
 
-#endif /* __OPTION_WIDGET_H__ */
+#endif /* OPTION_WIDGET_H */

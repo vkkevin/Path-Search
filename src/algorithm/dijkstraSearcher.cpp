@@ -1,4 +1,4 @@
-#include "algorithms/dijkstraSearcher.h"
+#include "dijkstraSearcher.h"
 #include <queue>
 #include <iostream>
 

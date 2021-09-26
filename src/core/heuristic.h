@@ -1,5 +1,5 @@
-#ifndef __HEURISTIC_H__
-#define __HEURISTIC_H__
+#ifndef HEURISTIC_H
+#define HEURISTIC_H
 
 class Heuristic
 {
@@ -29,4 +29,4 @@ private:
 
 };
 
-#endif /* __HEURISTIC_H__ */
+#endif /* HEURISTIC_H */

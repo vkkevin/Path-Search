@@ -1,4 +1,4 @@
-#include "algorithms/bestFirstSearcher.h"
+#include "bestFirstSearcher.h"
 #include <queue>
 #include <iostream>
 

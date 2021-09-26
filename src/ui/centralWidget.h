@@ -1,5 +1,5 @@
-#ifndef __CENTRAL_WIDGET_H__
-#define __CENTRAL_WIDGET_H__
+#ifndef CENTRAL_WIDGET_H
+#define CENTRAL_WIDGET_H
 
 #include <QWidget>
 #include <QFrame>
@@ -37,4 +37,4 @@ public slots:
     void executeFinderTask(const QString &taskName);
 };
 
-#endif /* __CENTRAL_WIDGET_H__ */
+#endif /* CENTRAL_WIDGET_H */

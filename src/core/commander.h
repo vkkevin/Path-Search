@@ -1,9 +1,11 @@
 #ifndef COMMANDER_H
 #define COMMANDER_H
 
+#include <QObject>
 
-class Commander
+class Commander: public QObject
 {
+    Q_OBJECT
 public:
     Commander();
 };

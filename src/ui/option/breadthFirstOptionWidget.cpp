@@ -1,4 +1,4 @@
-#include "ui/options/breadthFirstOptionWidget.h"
+#include "breadthFirstOptionWidget.h"
 #include <QBoxLayout>
 #include <QDebug>
 

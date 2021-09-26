@@ -1,5 +1,5 @@
-#ifndef __A_STAR_SEARCHER_H__
-#define __A_STAR_SEARCHER_H__
+#ifndef A_STAR_SEARCHER_H
+#define A_STAR_SEARCHER_H
 
 #include "core/algorithm.h"
 #include <queue>
@@ -32,4 +32,4 @@ public:
     std::vector<Node *> biAStarSearch();
 };
 
-#endif /* __A_STAR_SEARCHER_H__ */
+#endif /* A_STAR_SEARCHER_H */

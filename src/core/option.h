@@ -1,5 +1,5 @@
-#ifndef __OPTION_H__
-#define __OPTION_H__
+#ifndef OPTION_H
+#define OPTION_H
 
 class Option
 {
@@ -37,4 +37,4 @@ private:
     int _optionValue[OptionTypeNum];
 };
 
-#endif /* __OPTION_H__ */
+#endif /* OPTION_H */

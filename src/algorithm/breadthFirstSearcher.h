@@ -1,5 +1,5 @@
-#ifndef __BREADTH_FIRST_SEARCHER_H__
-#define __BREADTH_FIRST_SEARCHER_H__
+#ifndef BREADTH_FIRST_SEARCHER_H
+#define BREADTH_FIRST_SEARCHER_H
 
 #include "core/algorithm.h"
 
@@ -15,4 +15,4 @@ public:
 
 };
 
-#endif /* __BREADTH_FIRST_SEARCHER_H__ */
+#endif /* BREADTH_FIRST_SEARCHER_H */

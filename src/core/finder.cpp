@@ -1,9 +1,9 @@
 #include "core/finder.h"
-#include "algorithms/aStarSearcher.h"
-#include "algorithms/iDAStarSearcher.h"
-#include "algorithms/breadthFirstSearcher.h"
-#include "algorithms/bestFirstSearcher.h"
-#include "algorithms/dijkstraSearcher.h"
+#include "algorithm/aStarSearcher.h"
+#include "algorithm/iDAStarSearcher.h"
+#include "algorithm/breadthFirstSearcher.h"
+#include "algorithm/bestFirstSearcher.h"
+#include "algorithm/dijkstraSearcher.h"
 #include <QtGlobal>
 
 #ifdef Q_OS_LINUX
