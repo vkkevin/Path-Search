@@ -197,10 +197,10 @@ std::vector<Node *> AStarSearcher::run()
 template <class T, class Container, class Compare>
 void myPriorityQueue<T, Container, Compare>::updateItem(T &val)
 {
-    std::vector<Node *>::iterator nit = std::find(priority_queue<T, Container, Compare>::c.begin(),
-                                                  priority_queue<T, Container, Compare>::c.end(), val);
-    if(nit != priority_queue<T, Container, Compare>::c.end()){
-        priority_queue<T, Container, Compare>::c.erase(nit);
-        priority_queue<T, Container, Compare>::push(val);
+    Container &c = priority_queue<T, Container, Compare>::c;
+    std::vector<Node *>::iterator nit = std::find(c.begin(), c.end(), val);
+    if(nit != c.end()){
+        c.erase(nit);
+        this->push(val);
     }
 }

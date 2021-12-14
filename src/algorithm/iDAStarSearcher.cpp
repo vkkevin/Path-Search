@@ -126,8 +126,9 @@ std::vector<Node *> IDAStarSearcher::run()
     std::vector<Node *> result;
     _path.clear();
     iDAStarSearch();
-    result = _path;
-    _path.clear();
+//    result = _path;
+    result = qMove(_path);
+//    _path.clear();
     refurGraph();
     return result;
 }

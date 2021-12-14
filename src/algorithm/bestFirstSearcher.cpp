@@ -17,9 +17,9 @@ std::vector<Node *> BestFirstSearcher::run()
     std::vector<Node *> result;
     _option->setOptionUsability(Option::Weight);
     _option->setOptionValue(Option::Weight, 1000000);
-    if(_option->optionValue(Option::BiDirectional) == Option::SELECTED){
+    if(_option->optionValue(Option::BiDirectional) == Option::SELECTED) {
         result = biAStarSearch();
-    }else{
+    } else {
         result = aStarSearch();
     }
     refurGraph();

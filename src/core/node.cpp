@@ -1,4 +1,5 @@
-#include "core/node.h"
+#include "node.h"
+#include "core/commander.h"
 
 Node::Node(int id, Node *parent)
     : _id(id), _degreeNum(0), _weight(0)
@@ -81,5 +82,11 @@ void Node::setPathType(Node::PathType ptype)
 Node::PathType Node::pathType()
 {
     return _pathType;
+}
+
+void Node::updateStatus(Node::Status status)
+{
+    _status = status;
+    Commander::instance()->refreshGraph();
 }
 

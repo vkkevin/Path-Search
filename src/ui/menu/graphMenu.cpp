@@ -1,4 +1,5 @@
 #include "graphMenu.h"
+#include "core/commander.h"
 
 QMenu *GraphMenu::create()
 {
@@ -24,5 +25,9 @@ void GraphMenu::initUi()
 
 void GraphMenu::triggerAction(QAction *action)
 {
+#if 1
+    Commander::instance()->changeGraph(action->text());
+#else
     emit menuActionIsTriggered("Graph", action->text());
+#endif
 }

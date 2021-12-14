@@ -1,4 +1,5 @@
 #include "centralWidget.h"
+#include "core/commander.h"
 #include "ui/graphFrame.h"
 #include "ui/optionFrame.h"
 #include "ui/controllerFrame.h"
@@ -35,6 +36,7 @@ void CentralWidget::init()
 
 void CentralWidget::initUi()
 {
+    Commander::instance()->setParent(this);
     _graphFrame = new GraphFrame(this);
     _optionFrame = new OptionFrame(this);
     _controlFrame = new ControllerFrame(this);

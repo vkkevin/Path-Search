@@ -38,6 +38,7 @@ public:
     virtual By by();
     virtual void setPathType(PathType ptype);
     virtual PathType pathType();
+    virtual void updateStatus(Node::Status status);
 
 public:
     struct heuristicWeight{

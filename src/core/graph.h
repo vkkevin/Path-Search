@@ -9,7 +9,7 @@ using std::vector;
 class Graph
 {
 public:
-    enum GraphType{
+    enum GraphType {
         GridGraph
     };
 
